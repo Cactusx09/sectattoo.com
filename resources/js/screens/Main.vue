@@ -1,17 +1,16 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example </div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+    <main class="main">
+        <div class="main__logo">
+            <img src="@images/letters/s.png">
+            <img src="@images/letters/e.png">
+            <img src="@images/letters/c.png">
+            <img src="@images/letters/t.png">
+            <img src="@images/letters/tat.png">
+            <img src="@images/letters/t2.png">
+            <img src="@images/letters/o.png">
+            <img src="@images/letters/o.png">
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -19,7 +18,23 @@
 
     export default {
         mounted() {
-            axios.get('/api/v1/works').then((data) => { console.log(data); debugger;})
+            axios.get('/api/v1/works').then((data) => {
+
+            });
         }
     }
 </script>
+
+<style lang="sass">
+    .main
+        background: url('~images/bg/main.jpg') no-repeat center
+        background-size: cover
+        min-height: 100vh
+        +flex_c_c
+
+        &__logo
+            +flex_c_c
+
+
+</style>
+
