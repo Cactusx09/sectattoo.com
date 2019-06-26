@@ -23,13 +23,12 @@
     @import 'resources/sass/web/reset.sass'
 
     .app
-        font-size: 16px
         font: 16px 'Century Gothic', Helvetica, Helvetica Neue, Arial
         cursor: default
         position: relative
 
     .container
-        max-width: 975px
+        max-width: 1100px
         width: 100%
         padding-left: 15px
         padding-right: 15px
@@ -43,10 +42,16 @@
         right: 0
         top: 0
         bottom: 0
+        padding-top: 5vh
         &__nav
             a
                 font-size: 1.125rem
+                color: $white
+                text-decoration: none
+                letter-spacing: 0.028rem
                 font-weight: 700
                 line-height: 2.67
+                &:not(:last-of-type)
+                    margin-right: 6rem
 </style>
 
