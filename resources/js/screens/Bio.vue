@@ -38,7 +38,7 @@
 
         methods: {
             wrapWords(str, tmpl) {
-                return str.replace(/[\w-',.!]+/g, tmpl || '<span>$&</span>');
+                return str.replace(/[\w-',.!:]+/g, tmpl || '<span>$&</span>');
             }
         }
     }
