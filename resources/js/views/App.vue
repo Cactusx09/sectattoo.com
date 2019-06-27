@@ -26,6 +26,7 @@
         font: 16px 'Century Gothic', Helvetica, Helvetica Neue, Arial
         cursor: default
         position: relative
+        color: $black
 
     .container
         max-width: 1100px
@@ -34,14 +35,14 @@
         padding-right: 15px
         margin-left: auto
         margin-right: auto
+        box-sizing: border-box
 
 
     .header
         position: absolute
         left: 0
-        right: 0
         top: 0
-        bottom: 0
+        width: 100%
         padding-top: 5vh
         &__nav
             a
