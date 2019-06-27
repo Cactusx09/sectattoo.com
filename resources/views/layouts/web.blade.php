@@ -9,7 +9,7 @@
 
     <title>Sectattoo</title>
 
-    <link href="{{ asset('css/app.css') }}" />
+    <link href="{{ mix('css/app.css') }}" />
 </head>
 
 
@@ -17,6 +17,6 @@
 
     <div id="app"></div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
