@@ -37,6 +37,62 @@
         margin-right: auto
         box-sizing: border-box
 
+    .red
+        color: $red
+    .justify
+        +flex_sb_fe
+
+    .field
+        position: relative
+        font-size: 1.125rem
+        font-weight: 700
+        line-height: 2.67
+        letter-spacing: 1.5rem
+        .label
+            color: $gray
+            position: absolute
+            left: 0
+            bottom: 30px
+            line-height: 1
+            pointer-events: none
+        .input,
+        .textarea
+            display: block
+            width: 100%
+            background: none
+            border: none
+            outline: none
+            line-height: 1.5
+            min-height: 80px
+            letter-spacing: 0.3rem
+        .textarea
+            min-height: 150px
+        &:before
+            content: ''
+            position: absolute
+            left: 0
+            bottom: 0
+            height: 2px
+            width: 100%
+            background: #e6e6e6
+
+    .button
+        background: none
+        border: none
+        outline: none
+        width: 100%
+        padding: 0
+        >span
+            +flex_fs_c
+            border-bottom: 2px solid $red
+            font-size: 1.5rem
+            font-weight: 700
+            line-height: 2
+            letter-spacing: 3.2rem
+            color: $red
+            padding-bottom: 20px
+
+
 
     .header
         position: absolute
