@@ -71,16 +71,11 @@
                 font-weight: 700
                 line-height: 2.67
                 +flex_sb_fe
+                letter-spacing: 0.028rem
                 flex-wrap: wrap
                 span
                     margin-right: 10px
-                &.red
-                    color: $red
 
-            .justify
-                +flex_sb_fe
-            // +flex_c_fs
-            // flex-direction: column
         &__video
             background: url('~images/anisa.jpg') no-repeat center
             position: absolute
@@ -89,9 +84,6 @@
             height: 1071px
             width: calc(50% - 70px)
             background-size: cover
-
-
-
 
 </style>
 
