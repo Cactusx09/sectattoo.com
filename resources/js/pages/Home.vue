@@ -7,6 +7,8 @@
         <works/>
 
         <contacts/>
+
+        <questions/>
     </div>
 </template>
 
@@ -15,6 +17,7 @@
     import Bio from '@screens/Bio'
     import Works from '@screens/Works'
     import Contacts from '@screens/Contacts'
+    import Questions from '@screens/Questions'
 
     export default {
         components: {
@@ -22,6 +25,7 @@
             Bio,
             Works,
             Contacts,
+            Questions,
         },
     }
 </script>
