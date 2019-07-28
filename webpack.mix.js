@@ -10,8 +10,17 @@ mix.webpackConfig({
             '@images': __dirname + '/resources/images',
             '@screens': __dirname + '/resources/js/screens',
             '@components': __dirname + '/resources/js/components',
+            '@node_modules': __dirname + '/node_modules/',
         }
-    }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(webm|mp4)$/,
+                loader: 'file-loader',
+            }
+        ],
+    },
 });
 
 /*
