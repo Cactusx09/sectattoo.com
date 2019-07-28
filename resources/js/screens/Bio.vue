@@ -14,7 +14,12 @@
                 </div>
 
 
-                <div class="bio__video"></div>
+                <div class="bio__video">
+                    <video autoplay muted loop>
+                        <source src="@images/anisa.webm" type="video/webm">
+                        <source src="@images/anisa.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </div>
     </section>
@@ -60,8 +65,8 @@
             +flex_sb_s
 
         &__text
-            width: calc(50% - 70px)
-            max-width: 600px
+            width: calc(60% - 70px)
+            max-width: 520px
             color: white
             text-align: justify
             padding-top: 50px
@@ -69,21 +74,29 @@
             p
                 font-size: 1.125rem
                 font-weight: 700
-                line-height: 2.67
+                line-height: 2.6
                 +flex_sb_fe
                 letter-spacing: 0.028rem
                 flex-wrap: wrap
+                margin-bottom: 2rem
                 span
                     margin-right: 10px
 
         &__video
             background: url('~images/anisa.jpg') no-repeat center
             position: absolute
-            left: calc(50% + 70px)
+            // left: calc(53% + 70px)
+            right: 0
             top: 0
             height: 1071px
-            width: calc(50% - 70px)
+            width: calc(47% - 70px)
             background-size: cover
+            overflow: hidden
+            video
+                position: absolute
+                left: 0
+                top: 0
+                height: 100%
 
 </style>
 
