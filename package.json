@@ -25,6 +25,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "animejs": "^3.0.1",
+        "in-view": "^0.6.1",
         "vue-router": "^3.0.6"
     }
 }
