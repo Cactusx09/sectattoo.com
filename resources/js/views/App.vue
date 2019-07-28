@@ -27,6 +27,7 @@
         cursor: default
         position: relative
         color: $black
+        user-select: none
 
     .container
         max-width: 1100px
@@ -47,7 +48,7 @@
         font-size: 1.125rem
         font-weight: 700
         line-height: 2.67
-        letter-spacing: 1.5rem
+        letter-spacing: 1.55rem
         .label
             color: $gray
             position: absolute
@@ -82,13 +83,14 @@
         outline: none
         width: 100%
         padding: 0
+        cursor: pointer
         >span
             +flex_fs_c
             border-bottom: 2px solid $red
             font-size: 1.5rem
             font-weight: 700
             line-height: 2
-            letter-spacing: 3.2rem
+            letter-spacing: 4.2rem
             color: $red
             padding-bottom: 20px
 
@@ -100,6 +102,7 @@
         top: 0
         width: 100%
         padding-top: 5vh
+        z-index: 5
         &__nav
             a
                 font-size: 1.125rem
