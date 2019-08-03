@@ -88,10 +88,13 @@
             z-index: -1
             video
                 position: absolute
-                width: 100%
+                height: 100%
                 left: 50%
                 top: 50%
                 transform: translateX(-50%) translateY(-50%) translateZ(0)
+                @media (min-aspect-ratio: 16/9)
+                    width: 100%
+                    height: auto
 
             &:before
                 content: ''
