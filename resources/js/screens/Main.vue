@@ -15,15 +15,25 @@
             <img src="@images/letters/t2.png">
             <img src="@images/letters/o.png">
             <img src="@images/letters/o.png">
-            <div class="main__logo_glitch">
-                <img class="main__logo_bold" src="@images/letters/s.png">
-                <img class="main__logo_bold" src="@images/letters/e.png">
-                <img class="main__logo_bold" src="@images/letters/c.png">
-                <img class="main__logo_bold" src="@images/letters/t.png">
-                <img class="main__logo_tat" src="@images/letters/tat.png">
-                <img src="@images/letters/t2.png">
-                <img src="@images/letters/o.png">
-                <img src="@images/letters/o.png">
+            <div class="main__logo_black">
+                <img class="main__logo_bold" src="@images/letters/black/s-black.png">
+                <img class="main__logo_bold" src="@images/letters/black/e-black.png">
+                <img class="main__logo_bold" src="@images/letters/black/c-black.png">
+                <img class="main__logo_bold" src="@images/letters/black/t-black.png">
+                <img class="main__logo_tat" src="@images/letters/black/tat-black.png">
+                <img src="@images/letters/black/t2-black.png">
+                <img src="@images/letters/black/o-black.png">
+                <img src="@images/letters/black/o-black.png">
+            </div>
+            <div class="main__logo_white">
+                <img class="main__logo_bold" src="@images/letters/white/s-white.png">
+                <img class="main__logo_bold" src="@images/letters/white/e-white.png">
+                <img class="main__logo_bold" src="@images/letters/white/c-white.png">
+                <img class="main__logo_bold" src="@images/letters/white/t-white.png">
+                <img class="main__logo_tat" src="@images/letters/white/tat-white.png">
+                <img src="@images/letters/white/t2-white.png">
+                <img src="@images/letters/white/o-white.png">
+                <img src="@images/letters/white/o-white.png">
             </div>
         </div>
     </main>
@@ -85,13 +95,13 @@
             top: 0
             width: 100%
             height: 100%
-            z-index: -1
             video
                 position: absolute
                 height: 100%
                 left: 50%
                 top: 50%
                 transform: translateX(-50%) translateY(-50%) translateZ(0)
+                z-index: -2
                 @media (min-aspect-ratio: 16/9)
                     width: 100%
                     height: auto
@@ -104,7 +114,8 @@
                 height: 100%
                 background-color: $black
                 position: absolute
-                opacity: 0.5
+                opacity: .3
+                z-index: -1
 
         &__logo
             position: relative
@@ -117,9 +128,10 @@
             &_bold
                 margin-bottom: 0.5rem
 
-            &_glitch
+            &_black,
+            &_white
                 +flex_c_c
-                opacity: 0.2
+                opacity: 0.5
                 position: absolute
                 left: 0
                 top: 0
