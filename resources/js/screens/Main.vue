@@ -48,45 +48,29 @@
                     targets: '.main__logo > img',
                     opacity: [1, .3, 1],
                     duration: this.$anime.random(50, 400),
-                    delay: () => this.$anime.random(250, 1500),
-                })
-                .add({
-                    targets: '.main__logo_black > img',
-                    opacity: [1, .3, 1],
-                    duration: this.$anime.random(50, 1000),
-                    delay: () => this.$anime.random(250, 1500),
-                    offset: -500,
-                })
-                .add({
-                    targets: '.main__logo_white > img',
-                    opacity: [1, .3, 1],
-                    duration: this.$anime.random(50, 1000),
-                    delay: () => this.$anime.random(250, 1500),
-                    offset: -500,
+                    delay: () => this.$anime.random(250, 3500),
                 })
 
             const mainLogoBlackGlitch = () => {
                 this.$anime({
-                    targets: '.main__logo_black',
-                    opacity: [.5, .8, .8],
-                    zIndex: () => [this.$anime.random(-2, 3), -3],
+                    targets: '.main__logo_black img',
+                    opacity: [.6, .8, 0],
                     skew: [() => this.$anime.random(-5, 5), 0],
-                    translateX: [() => this.$anime.random(-10, 10), 0],
-                    translateY: [() => this.$anime.random(-10, 10), 0],
-                    duration: () => this.$anime.random(50, 200),
-                    delay: () => this.$anime.random(150, 3500),
+                    translateX: () => this.$anime.random(-10, 10),
+                    translateY: () => this.$anime.random(-10, 10),
+                    duration: () => this.$anime.random(20, 100),
+                    delay: () => this.$anime.random(50, 2500),
                     complete: mainLogoBlackGlitch,
                 })
             }
 
             const mainLogoWhiteGlitch = () => {
                 this.$anime({
-                    opacity: [.6, .7, () => this.$anime.random(0, 1)],
+                    opacity: [.6, 1, 0],
                     targets: '.main__logo_white',
-                    zIndex: () => this.$anime.random(-2, 3),
                     skew: [() => this.$anime.random(-5, 5), 0],
-                    translateX: [() => this.$anime.random(-10, 10), 0],
-                    translateY: [() => this.$anime.random(-10, 10), 0],
+                    translateX: () => this.$anime.random(-10, 10),
+                    translateY: () => this.$anime.random(-10, 10),
                     duration: () => this.$anime.random(20, 100),
                     delay: () => this.$anime.random(50, 2500),
                     complete: mainLogoWhiteGlitch,
