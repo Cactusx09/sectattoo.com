@@ -43,65 +43,43 @@
 
     export default {
         mounted() {
-            let mainLogoT = this.$anime.timeline({ autoplay: false, loop: true })
-                .add({
-                    targets: '.main__logo > img',
-                    opacity: [1, .3, 1],
-                    duration: this.$anime.random(50, 400),
-                    delay: () => this.$anime.random(250, 1500),
-                })
-                .add({
-                    targets: '.main__logo_black > img',
-                    opacity: [1, .3, 1],
-                    duration: this.$anime.random(50, 1000),
-                    delay: () => this.$anime.random(250, 1500),
-                    offset: -500,
-                })
-                .add({
-                    targets: '.main__logo_white > img',
-                    opacity: [1, .3, 1],
-                    duration: this.$anime.random(50, 1000),
-                    delay: () => this.$anime.random(250, 1500),
-                    offset: -500,
-                })
-
-            const mainLogoBlackGlitch = () => {
+            const mainLogoImages = () => {
                 this.$anime({
-                    targets: '.main__logo_black',
-                    opacity: [.5, .8, .8],
-                    zIndex: () => [this.$anime.random(-2, 3), -3],
-                    skew: [() => this.$anime.random(-5, 5), 0],
-                    translateX: [() => this.$anime.random(-10, 10), 0],
-                    translateY: [() => this.$anime.random(-10, 10), 0],
-                    duration: () => this.$anime.random(50, 200),
-                    delay: () => this.$anime.random(150, 3500),
-                    complete: mainLogoBlackGlitch,
+                    targets: '.main__logo > img, .main__logo_white img',
+                    opacity: [0, () => this.$anime.random(0, 1), () => this.$anime.random(0, 1)],
+                    duration: () => this.$anime.random(50, 100),
+                    delay: () => this.$anime.random(250, 1500),
+                    complete: mainLogoImages,
                 })
             }
 
-            const mainLogoWhiteGlitch = () => {
+            const mainLogoGlitch = () => {
                 this.$anime({
-                    opacity: [.6, .7, () => this.$anime.random(0, 1)],
-                    targets: '.main__logo_white',
-                    zIndex: () => this.$anime.random(-2, 3),
+                    targets: '.main__logo_black, .main__logo_white',
                     skew: [() => this.$anime.random(-5, 5), 0],
-                    translateX: [() => this.$anime.random(-10, 10), 0],
-                    translateY: [() => this.$anime.random(-10, 10), 0],
-                    duration: () => this.$anime.random(20, 100),
-                    delay: () => this.$anime.random(50, 2500),
-                    complete: mainLogoWhiteGlitch,
+                    translateX: [() => this.$anime.random(-5, 10), 0],
+                    translateY: [() => this.$anime.random(-10, 5), 0],
+                    duration: () => this.$anime.random(50, 200),
+                    delay: () => this.$anime.random(150, 6500),
+                    complete: mainLogoGlitch,
+                })
+
+                this.$anime({
+                    targets: '.main__logo_black, .main__logo_white',
+                    opacity: [1, .8, .3, .9],
+                    zIndex: () => this.$anime.random(-4, 1),
+                    duration: () => this.$anime.random(50, 300),
                 })
             }
 
 
             this.$inView('.main__logo')
                 .on('enter', () => {
-                    mainLogoT.restart()
-                    mainLogoBlackGlitch()
-                    mainLogoWhiteGlitch()
+                    mainLogoImages()
+                    mainLogoGlitch()
                 })
                 .on('exit', () => {
-                    mainLogoT.pause()
+                    this.$anime.remove('.main__logo img')
                     this.$anime.remove('.main__logo_black')
                     this.$anime.remove('.main__logo_white')
                 })
@@ -150,6 +128,7 @@
 
         &__logo
             position: relative
+            z-index: 0
             +flex_c_c
             img
                 &:not(:last-of-type)
@@ -162,12 +141,13 @@
             &_black,
             &_white
                 +flex_c_c
-                opacity: 0.5
+                opacity: 1
                 position: absolute
                 left: 0
                 top: 0
                 width: 100%
                 height: 100%
+                z-index: -1
 
 </style>
 
