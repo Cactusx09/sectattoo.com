@@ -1,6 +1,6 @@
 <template>
     <main class="main">
-        <div class="main__bg">
+        <div class="main__bg" v-parallax=".5">
             <video autoplay muted loop>
                 <source src="@images/main.webm" type="video/webm">
                 <source src="@images/main.mp4" type="video/mp4">
@@ -41,8 +41,30 @@
 
 <script>
 
+    import waypoints from 'waypoints/lib/noframework.waypoints.js'
+
     export default {
         mounted() {
+            const start = this.$anime.timeline()
+                .add({
+                    targets: '.main',
+                    opacity: [0, 1],
+                    duration: 7000,
+                })
+                .add({
+                    targets: '.main__logo',
+                    duration: 10000,
+                    opacity: [0, 1],
+                }, 2000)
+                .add({
+                    targets: '.header__nav a',
+                    duration: 2000,
+                    translateX: [-200, 0],
+                    opacity: [0, 1],
+                    delay: this.$anime.stagger(100),
+                }, 3000)
+
+
             const mainLogoImages = () => {
                 this.$anime({
                     targets: '.main__logo > img, .main__logo_white img',
@@ -72,17 +94,37 @@
                 })
             }
 
+            mainLogoImages()
+            mainLogoGlitch()
+            const logoEl = document.querySelector('.main__logo')
+            new Waypoint({
+                element: logoEl,
+                handler: (direction) => {
+                    if(direction === 'up') {
+                        this.$anime({
+                            targets: logoEl,
+                            translateY: 0,
+                            scale: 1,
+                            opacity: 1,
+                            duration: 2000,
+                        })
+                        mainLogoImages()
+                        mainLogoGlitch()
+                    } else {
+                        this.$anime({
+                            targets: logoEl,
+                            translateY: -100,
+                            scale: .98,
+                            opacity: 0,
+                            duration: 2000,
+                        })
 
-            this.$inView('.main__logo')
-                .on('enter', () => {
-                    mainLogoImages()
-                    mainLogoGlitch()
-                })
-                .on('exit', () => {
-                    this.$anime.remove('.main__logo img')
-                    this.$anime.remove('.main__logo_black')
-                    this.$anime.remove('.main__logo_white')
-                })
+                        this.$anime.remove('.main__logo img')
+                        this.$anime.remove('.main__logo_black')
+                        this.$anime.remove('.main__logo_white')
+                    }
+                },
+            })
         },
     }
 </script>

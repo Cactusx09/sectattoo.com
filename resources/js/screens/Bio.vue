@@ -26,6 +26,8 @@
 </template>
 
 <script>
+    import waypoints from 'waypoints/lib/noframework.waypoints.js'
+
     export default {
         data() {
             return {
@@ -39,6 +41,75 @@
                     bottom: 's t y l e .',
                 }
             }
+        },
+
+        mounted() {
+            new Waypoint({
+                element: document.querySelector('.bio__text'),
+                handler: (direction) => {
+                    if(direction === 'up') {
+                        let filteredTargets = [];
+                        for (var el of document.querySelectorAll('.bio__text span')) {
+                            if(el.style.opacity == 1) filteredTargets.push(el)
+                        }
+                        this.$anime.remove('.bio__text span');
+
+
+                        this.$anime({
+                            targets: '.bio__text span',
+                            opacity: 0,
+                            translateX: [0, -15],
+                            duration: 700,
+                            delay: this.$anime.stagger(50, {from: 'last'}),
+                        })
+                    } else {
+                        let filteredTargets = [];
+                        for (var el of document.querySelectorAll('.bio__text span')) {
+                            if(el.style.opacity != 1) filteredTargets.push(el)
+                        }
+                        this.$anime.remove('.bio__text span');
+
+                        this.$anime({
+                            targets: filteredTargets,
+                            translateX: [-15, 0],
+                            translateZ: 0,
+                            opacity: 1,
+                            delay: this.$anime.stagger(50, {from: 'first'}),
+                            duration: 700,
+                        })
+                    }
+                },
+                offset: '50%',
+            })
+
+
+            new Waypoint({
+                element: document.querySelector('.bio'),
+                handler: (direction) => {
+                    if(direction === 'up') {
+                        this.$anime({
+                            targets: '.bio__video',
+                            scale: 1.1,
+                            opacity: 0,
+                            duration: 500,
+                            easing: 'linear',
+                        })
+
+
+
+
+                    } else {
+                        this.$anime({
+                            targets: '.bio__video',
+                            scale: 1,
+                            opacity: 1,
+                            duration: 500,
+                            easing: 'linear',
+                        })
+                    }
+                },
+                offset: '80%',
+            })
         },
 
         methods: {
@@ -59,7 +130,7 @@
             left: 0
             width: 100%
             height: 1000px
-            z-index: -1
+            z-index: 2
             background: $black
         &__body
             +flex_sb_s
@@ -70,6 +141,10 @@
             color: white
             text-align: justify
             padding-top: 50px
+            position: relative
+            z-index: 2
+            span
+                opacity: 0
 
             p
                 font-size: 1.125rem
@@ -92,6 +167,8 @@
             width: calc(47% - 70px)
             background-size: cover
             overflow: hidden
+            z-index: 5
+            opacity: 0
             video
                 position: absolute
                 left: 0

@@ -28,6 +28,7 @@
         position: relative
         color: $black
         user-select: none
+        overflow-x: hidden
 
     .container
         max-width: 1100px
@@ -104,6 +105,7 @@
         padding-top: 5vh
         z-index: 5
         &__nav
+            +flex_fs_c
             a
                 font-size: 1.125rem
                 color: $white

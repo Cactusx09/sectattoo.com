@@ -7,8 +7,8 @@ import App from '@/js/views/App'
 import anime from 'animejs'
 Object.defineProperty(Vue.prototype, '$anime', { value: anime })
 
-import inView from 'in-view'
-Object.defineProperty(Vue.prototype, '$inView', { value: inView })
+import VueParallax from 'vue-parallax-js'
+Vue.use(VueParallax)
 
 
 Vue.use(VueRouter)

@@ -27,7 +27,8 @@
     "dependencies": {
         "animejs": "^3.0.1",
         "file-loader": "^4.1.0",
-        "in-view": "^0.6.1",
-        "vue-router": "^3.0.6"
+        "vue-parallax-js": "^0.2.3",
+        "vue-router": "^3.0.6",
+        "waypoints": "^4.0.1"
     }
 }

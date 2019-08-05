@@ -110,6 +110,9 @@
                 color: $black
                 text-decoration: none
                 position: relative
+                transition: .5s
+                &:hover
+                    color: $red
                 svg
                     position: absolute
                     top: 5px
@@ -165,6 +168,9 @@
             background-position: center
             display: block
             filter: grayscale(1)
+            transition: 1s
+            &:hover
+                filter: none
 
 
 </style>

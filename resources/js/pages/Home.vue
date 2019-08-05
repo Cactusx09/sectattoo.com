@@ -1,6 +1,6 @@
 <template>
     <div>
-        <main-screen/>
+        <main-screen v-parallax=".25"/>
 
         <bio/>
 
