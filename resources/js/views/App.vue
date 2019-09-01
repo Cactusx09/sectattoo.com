@@ -9,7 +9,7 @@
                 </nav>
             </div>
         </header>
-        <router-view></router-view>
+        <router-view @set-questions="updateScroll()"></router-view>
     </div>
 </template>
 
@@ -18,6 +18,11 @@
     import scrollAnimations from '../Scrollbar.js'
 
     export default {
+        data() {
+            return {
+                scroll: null,
+            }
+        },
         mounted() {
             // Scrollbar.use(OverscrollPlugin);
             // Scrollbar.init(document.querySelector('#app'), {
@@ -40,6 +45,12 @@
             })
 
         },
+
+        methods: {
+            updateScroll() {
+                console.log('update scroll');
+            }
+        }
     }
 </script>
 
@@ -54,6 +65,7 @@
         bottom: 0
         right: 0
         z-index: 3
+        background-color: $black
 
     .app
         font: 16px 'Century Gothic', Helvetica, Helvetica Neue, Arial

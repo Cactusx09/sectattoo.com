@@ -20,10 +20,13 @@
                 class="questions__body">
                 <div class="questions__names">
                     <p v-for="(question, index) in questions" :key="question.id">
-                        <span @click="selectedQuestion = {
-                                text: question.text,
-                                index: index,
-                            }"
+                        <span @click="
+                                selectedQuestion = {
+                                    text: question.text,
+                                    index: index,
+                                }
+                                $emit('set-questions');
+                            "
                             :class="{ '_active': selectedQuestion.index === index }">
                             {{ question.name }}
                         </span>

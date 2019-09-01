@@ -118,7 +118,7 @@ const ScrollAnimations = data => {
             Scrollbar.use(MobilePlugin);
         }
 
-    Scrollbar.use(OverscrollPlugin);
+        Scrollbar.use(OverscrollPlugin);
         variables.scrollBar = Scrollbar.init(
             variables.element,
             variables.scrollBarOptions
@@ -180,6 +180,9 @@ const ScrollAnimations = data => {
             },
             getScrollBar: () => {
                 return variables.scrollBar;
+            },
+            update: () => {
+                Scrollbar.update(variables.element);
             }
         }
     };

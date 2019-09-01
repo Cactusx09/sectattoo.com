@@ -8,7 +8,7 @@
 
         <contacts/>
 
-        <questions/>
+        <questions @set-questions="$emit('set-questions')"/>
     </div>
 </template>
 
