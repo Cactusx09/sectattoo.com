@@ -1,7 +1,11 @@
 <template>
     <section class="works">
         <div class="container">
-            <div class="works__filter">
+            <div data-aos
+                data-aos-id="works-filter"
+                data-aos-top-offset="350"
+                data-aos-bottom-offset="-200"
+                class="works__filter">
                 <a v-for="filter in filters" :key="filter.id" href="#"
                     @click.prevent="filterWorks(filter)">
                     <span>{{ filter.name }}</span>
@@ -10,21 +14,29 @@
                     </svg>
                 </a>
             </div>
-            <div class="works__body">
-                <div class="works__col">
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/405/469')"></a>
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/415/469')"></a>
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/405/479')"></a>
-                </div>
-                <div class="works__col">
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/408/499')"></a>
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/425/489')"></a>
-                </div>
-                <div class="works__col">
+            <div class="works__body"
+                data-aos
+                data-aos-id="works-body"
+                data-aos-top-offset="700"
+                data-aos-bottom-offset="-500">
+                    <a href="#"
+                        class="works__item"
+                        style="background-image: url('http://placekitten.com/405/469')"></a>
+                    <a href="#"
+                        class="works__item"
+                        style="background-image: url('http://placekitten.com/415/469')"></a>
+                    <a href="#"
+                        class="works__item"
+                        style="background-image: url('http://placekitten.com/405/479')"></a>
+                    <a href="#"
+                        class="works__item"
+                        style="background-image: url('http://placekitten.com/408/499')"></a>
+                    <a href="#"
+                        class="works__item"
+                        style="background-image: url('http://placekitten.com/425/489')"></a>
                     <a href="#" class="works__item" style="background-image: url('http://placekitten.com/444/449')"></a>
                     <a href="#" class="works__item" style="background-image: url('http://placekitten.com/433/465')"></a>
                     <a href="#" class="works__item" style="background-image: url('http://placekitten.com/422/479')"></a>
-                </div>
             </div>
         </div>
     </section>
@@ -64,7 +76,51 @@
         mounted() {
             axios.get('/api/v1/works').then((data) => {
                 console.log(data)
-            });
+            })
+
+            document.addEventListener('aos:in:works-filter', ({detail}) => {
+                this.$anime({
+                    targets: '.works__filter a',
+                    opacity: [0, 1],
+                    translateX: [0, -35],
+                    duration: 200,
+                    delay: this.$anime.stagger(150, {from: 'first'}),
+                })
+            })
+            document.addEventListener('aos:out:works-filter', ({detail}) => {
+                this.$anime({
+                    targets: '.works__filter a',
+                    opacity: [1, 0],
+                    translateX: [-35, 0],
+                    duration: 200,
+                    delay: this.$anime.stagger(75, {from: 'last'}),
+                })
+            })
+
+
+            document.addEventListener('aos:in:works-body', ({detail}) => {
+                this.$anime({
+                    targets: '.works__item',
+                    opacity: [0, 1],
+                    scale: [1.15, 1],
+                    translateX: [() => this.$anime.random(-25, 25), 0],
+                    translateY: [() => this.$anime.random(-25, 25), 0],
+                    duration: 700,
+                    easing: 'linear',
+                    delay: this.$anime.stagger(400, {grid: [3, 5], from: 0}),
+                })
+            })
+            document.addEventListener('aos:out:works-body', ({detail}) => {
+                let targets = [...document.querySelectorAll('.works__item')]
+
+                this.$anime({
+                    targets: targets.splice(0, 4),
+                    opacity: [1, 0],
+                    scale: [1, .8],
+                    duration: 200,
+                    delay: this.$anime.stagger(150, {from: 'last'}),
+                })
+            })
         },
 
         methods: {
@@ -111,6 +167,7 @@
                 text-decoration: none
                 position: relative
                 transition: .5s
+                opacity: 0
                 &:hover
                     color: $red
                 svg
@@ -122,53 +179,33 @@
 
         &__body
             +flex_sb_fs
-        &__col
-            width: calc(33.3333% - 25px)
-            +flex_sb_c
-            flex-direction: column
-
-            &:nth-of-type(1)
-                .works__item
-                    margin-bottom: 120px
-                    &:nth-of-type(2n - 1)
-                        margin-left: 35px
-                    &:nth-of-type(2n)
-                        margin-left: auto
-                    &:nth-of-type(3n)
-                        margin-right: auto
-                        margin-left: -15px
-
-            &:nth-of-type(2)
-                .works__item
-                    margin-bottom: 290px
-                    &:nth-of-type(2n - 1)
-                        margin-top: 135px
-                    &:nth-of-type(2n)
-                        margin-left: 7px
-                    &:nth-of-type(3n)
-                        margin-right: 7px
-
-            &:nth-of-type(3)
-                .works__item
-                    margin-bottom: 65px
-                    &:nth-of-type(2n - 1)
-                        margin-left: 60px
-                    &:nth-of-type(2n)
-                        margin-right: auto
-                    &:nth-of-type(3n)
-                        margin-left: auto
-                        margin-right: -15px
+            flex-wrap: wrap
+            padding-bottom: 70px
 
 
         &__item
-            width: 82%
-            height: 469px
+            width: calc(33.3333% - 70px)
+            padding-bottom: 35%
             background-repeat: no-repeat
             background-size: cover
             background-position: center
             display: block
             filter: grayscale(1)
             transition: 1s
+            opacity: 0
+            margin-bottom: 100px
+            &:nth-of-type(2)
+                margin-top: 185px
+            &:nth-of-type(5)
+                margin-top: 155px
+            &:nth-of-type(2n - 1)
+                margin-left: -25px
+            &:nth-of-type(2n)
+                margin-bottom: 55px
+                margin-right: 25px
+            &:nth-of-type(3n + 1)
+                margin-top: 15px
+                margin-right: -25px
             &:hover
                 filter: none
 

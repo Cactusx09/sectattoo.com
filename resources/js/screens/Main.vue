@@ -1,12 +1,12 @@
 <template>
     <main class="main">
-        <div class="main__bg" v-parallax=".5">
+        <div class="main__bg">
             <video autoplay muted loop>
                 <source src="@images/main.webm" type="video/webm">
                 <source src="@images/main.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="main__logo">
+        <div data-aos="fade-up" class="main__logo">
             <img class="main__logo_bold" src="@images/letters/s.png">
             <img class="main__logo_bold" src="@images/letters/e.png">
             <img class="main__logo_bold" src="@images/letters/c.png">
@@ -40,9 +40,6 @@
 </template>
 
 <script>
-
-    import waypoints from 'waypoints/lib/noframework.waypoints.js'
-
     export default {
         mounted() {
             const start = this.$anime.timeline()
@@ -96,35 +93,35 @@
 
             mainLogoImages()
             mainLogoGlitch()
-            const logoEl = document.querySelector('.main__logo')
-            new Waypoint({
-                element: logoEl,
-                handler: (direction) => {
-                    if(direction === 'up') {
-                        this.$anime({
-                            targets: logoEl,
-                            translateY: 0,
-                            scale: 1,
-                            opacity: 1,
-                            duration: 2000,
-                        })
-                        mainLogoImages()
-                        mainLogoGlitch()
-                    } else {
-                        this.$anime({
-                            targets: logoEl,
-                            translateY: -100,
-                            scale: .98,
-                            opacity: 0,
-                            duration: 2000,
-                        })
+            // const logoEl = document.querySelector('.main__logo')
+            // new Waypoint({
+            //     element: logoEl,
+            //     handler: (direction) => {
+            //         if(direction === 'up') {
+            //             this.$anime({
+            //                 targets: logoEl,
+            //                 translateY: 0,
+            //                 scale: 1,
+            //                 opacity: 1,
+            //                 duration: 2000,
+            //             })
+            //             mainLogoImages()
+            //             mainLogoGlitch()
+            //         } else {
+            //             this.$anime({
+            //                 targets: logoEl,
+            //                 translateY: -100,
+            //                 scale: .98,
+            //                 opacity: 0,
+            //                 duration: 2000,
+            //             })
 
-                        this.$anime.remove('.main__logo img')
-                        this.$anime.remove('.main__logo_black')
-                        this.$anime.remove('.main__logo_white')
-                    }
-                },
-            })
+            //             this.$anime.remove('.main__logo img')
+            //             this.$anime.remove('.main__logo_black')
+            //             this.$anime.remove('.main__logo_white')
+            //         }
+            //     },
+            // })
         },
     }
 </script>

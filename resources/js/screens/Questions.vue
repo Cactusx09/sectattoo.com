@@ -1,9 +1,23 @@
 <template>
     <section class="questions">
         <div class="container">
-            <div class="questions__title red justify">Questions</div>
+            <div class="questions__title red">
+                <span>Q</span>
+                <span>u</span>
+                <span>e</span>
+                <span>s</span>
+                <span>t</span>
+                <span>i</span>
+                <span>o</span>
+                <span>n</span>
+                <span>s</span>
+            </div>
 
-            <div class="questions__body">
+            <div data-aos
+                data-aos-id="questions-body"
+                data-aos-top-offset="390"
+                data-aos-bottom-offset="200"
+                class="questions__body">
                 <div class="questions__names">
                     <p v-for="(question, index) in questions" :key="question.id">
                         <span @click="selectedQuestion = {
@@ -70,10 +84,63 @@
         },
 
         created() {
-            selectedQuestion = {
-                text: questions[0].text,
+            this.selectedQuestion = {
+                text: this.questions[0].text,
                 index: 0,
             };
+        },
+
+        mounted() {
+            document.addEventListener('aos:in:questions-body', ({detail}) => {
+                this.$anime.remove('.questions__names p, .questions__title span, .questions__text')
+                this.$anime({
+                    targets: '.questions__names p',
+                    opacity: [0, 1],
+                    translateX: [-50, 0],
+                    duration: 2000,
+                    delay: this.$anime.stagger(50, {from: 'first'}),
+                })
+
+                this.$anime({
+                    targets: '.questions__title span',
+                    opacity: [0, 1],
+                    translateX: [-35, 0],
+                    duration: 2000,
+                    delay: this.$anime.stagger(100, {from: 'first'}),
+                })
+
+                this.$anime({
+                    targets: '.questions__text',
+                    opacity: 1,
+                    duration: 3000,
+                    delay: 2000,
+                })
+            })
+            document.addEventListener('aos:out:questions-body', ({detail}) => {
+                this.$anime.remove('.questions__names p, .questions__title span, .questions__text')
+                this.$anime({
+                    targets: '.questions__names p',
+                    translateX: [0, 50],
+                    opacity: [1, 0],
+                    delay: this.$anime.stagger(250, {from: 'first'}),
+                    duration: 2000,
+                })
+
+                this.$anime({
+                    targets: '.questions__title span',
+                    opacity: 0,
+                    translateX: [0, 35],
+                    duration: 1000,
+                    delay: this.$anime.stagger(100, {from: 'first'}),
+                })
+
+                this.$anime({
+                    targets: '.questions__text',
+                    opacity: 0,
+                    duration: 1000,
+                    easing: 'linear',
+                })
+            })
         },
     }
 </script>
@@ -86,13 +153,17 @@
             color: #cb1515
             font-size: 1.5rem
             font-weight: 700
-            letter-spacing: 1.5rem
             margin-bottom: 2rem
+            letter-spacing: .65rem
+            span
+                opacity: 0
 
         &__body
             +flex_sb_fs
 
         &__names
+            p
+                opacity: 0
             span
                 display: block
                 cursor: pointer
@@ -112,6 +183,7 @@
             letter-spacing: 0.028rem
             width: 50%
             text-align: justify
+            opacity: 0
 
 
 </style>

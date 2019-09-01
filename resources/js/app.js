@@ -7,13 +7,20 @@ import App from '@/js/views/App'
 import anime from 'animejs'
 Object.defineProperty(Vue.prototype, '$anime', { value: anime })
 
-import VueParallax from 'vue-parallax-js'
-Vue.use(VueParallax)
-
-
 Vue.use(VueRouter)
 
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+
 const app = new Vue({
+    created() {
+        AOS.init({
+            container: '.scroll-content',
+            easing: 'ease-out-back',
+            duration: 2000,
+        })
+    },
     el: '#app',
     router: Routes,
     render: h => h(App),

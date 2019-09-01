@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div class="app" id="app">
         <header class="header">
             <div class="container">
                 <nav class="header__nav">
@@ -14,13 +14,46 @@
 </template>
 
 <script>
+    // import Scrollbar from 'smooth-scrollbar'
+    import scrollAnimations from '../Scrollbar.js'
+
     export default {
+        mounted() {
+            // Scrollbar.use(OverscrollPlugin);
+            // Scrollbar.init(document.querySelector('#app'), {
+            //     plugins: {
+            //         overscroll: true,
+            //         maxOverscroll: 150,
+            //         damping: .2,
+            //     },
+            // })
+
+            scrollAnimations({
+                element: '#app',
+                scrollBarOptions: {
+                    plugins: {
+                        overscroll: true,
+                        maxOverscroll: 150,
+                        damping: .2,
+                    },
+                }
+            })
+
+        },
     }
 </script>
 
 <style lang="sass">
     @import '/fonts/fonts.css'
     @import 'resources/sass/web/reset.sass'
+
+    body
+        position: fixed
+        left: 0
+        top: 0
+        bottom: 0
+        right: 0
+        z-index: 3
 
     .app
         font: 16px 'Century Gothic', Helvetica, Helvetica Neue, Arial
@@ -29,6 +62,14 @@
         color: $black
         user-select: none
         overflow-x: hidden
+        width: 100%
+        height: 100%
+        // position: fixed
+        // left: 0
+        // top: 0
+        // bottom: 0
+        // right: 0
+        // z-index: 3
 
     .container
         max-width: 1100px
@@ -49,7 +90,7 @@
         font-size: 1.125rem
         font-weight: 700
         line-height: 2.67
-        letter-spacing: 1.55rem
+        letter-spacing: .7rem
         .label
             color: $gray
             position: absolute
@@ -57,6 +98,19 @@
             bottom: 30px
             line-height: 1
             pointer-events: none
+            span
+                display: inline-block
+                position: relative
+                z-index: 0
+                &:before
+                    content: ''
+                    position: absolute
+                    left: 0
+                    bottom: -8px
+                    width: 1000px
+                    height: 40px
+                    background: linear-gradient(to top, $black 80%, rgba($black, .1) 90%, rgba($black, 0) 100%)
+                    z-index: -1
         .input,
         .textarea
             display: block
@@ -64,9 +118,11 @@
             background: none
             border: none
             outline: none
-            line-height: 1.5
+            line-height: 1.3
+            letter-spacing: .3rem
+            color: $white
             min-height: 80px
-            letter-spacing: 0.3rem
+            font-wight: 400
         .textarea
             min-height: 150px
         &:before
@@ -77,6 +133,7 @@
             height: 2px
             width: 100%
             background: #e6e6e6
+            z-index: 5
 
     .button
         background: none
@@ -91,7 +148,7 @@
             font-size: 1.5rem
             font-weight: 700
             line-height: 2
-            letter-spacing: 4.2rem
+            letter-spacing: 3.7rem
             color: $red
             padding-bottom: 20px
 

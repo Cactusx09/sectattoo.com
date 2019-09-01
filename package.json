@@ -10,6 +10,8 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.5.5",
+        "aos": "^3.0.0-beta.6",
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
@@ -21,14 +23,13 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "sass-resources-loader": "^2.0.1",
+        "smooth-scrollbar": "^8.4.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
         "animejs": "^3.0.1",
         "file-loader": "^4.1.0",
-        "vue-parallax-js": "^0.2.3",
-        "vue-router": "^3.0.6",
-        "waypoints": "^4.0.1"
+        "vue-router": "^3.0.6"
     }
 }

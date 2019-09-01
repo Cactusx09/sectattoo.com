@@ -3,7 +3,11 @@
         <div class="container">
             <div class="bio__body">
 
-                <div class="bio__text">
+                <div data-aos
+                    data-aos-id="bio-text"
+                    data-aos-top-offset="500"
+                    data-aos-bottom-offset="200"
+                    class="bio__text">
                     <p class="red justify" v-html="wrapWords(text.top)"></p>
 
                     <p v-for="(paragraph, index) in text.paragraphs" :key="index"
@@ -14,7 +18,8 @@
                 </div>
 
 
-                <div class="bio__video">
+                <div data-aos="fade-up-left"
+                    class="bio__video">
                     <video autoplay muted loop>
                         <source src="@images/anisa.webm" type="video/webm">
                         <source src="@images/anisa.mp4" type="video/mp4">
@@ -26,8 +31,6 @@
 </template>
 
 <script>
-    import waypoints from 'waypoints/lib/noframework.waypoints.js'
-
     export default {
         data() {
             return {
@@ -44,71 +47,56 @@
         },
 
         mounted() {
-            new Waypoint({
-                element: document.querySelector('.bio__text'),
-                handler: (direction) => {
-                    if(direction === 'up') {
-                        let filteredTargets = [];
-                        for (var el of document.querySelectorAll('.bio__text span')) {
-                            if(el.style.opacity == 1) filteredTargets.push(el)
-                        }
-                        this.$anime.remove('.bio__text span');
+            document.addEventListener('aos:in:bio-text', ({detail}) => {
+                // let filteredTargets = [];
+                // for (var el of document.querySelectorAll('.bio__text span')) {
+                //     if(el.style.opacity != 1) filteredTargets.push(el)
+                // }
+                // this.$anime.remove('.bio__text span')
 
+                // this.$anime({
+                //     targets: filteredTargets,
+                //     translateX: [-15, 0],
+                //     translateZ: 0,
+                //     opacity: [0, 1],
+                //     delay: this.$anime.stagger(50, {from: 'first'}),
+                //     duration: 700,
+                // })
 
-                        this.$anime({
-                            targets: '.bio__text span',
-                            opacity: 0,
-                            translateX: [0, -15],
-                            duration: 700,
-                            delay: this.$anime.stagger(50, {from: 'last'}),
-                        })
-                    } else {
-                        let filteredTargets = [];
-                        for (var el of document.querySelectorAll('.bio__text span')) {
-                            if(el.style.opacity != 1) filteredTargets.push(el)
-                        }
-                        this.$anime.remove('.bio__text span');
+                this.$anime({
+                    targets: '.bio__text p',
+                    translateY: [-50, 0],
+                    translateZ: 0,
+                    opacity: 1,
+                    easing: 'spring(10, 80, 30, 10)',
+                    delay: this.$anime.stagger(250, {from: 'first'}),
+                })
 
-                        this.$anime({
-                            targets: filteredTargets,
-                            translateX: [-15, 0],
-                            translateZ: 0,
-                            opacity: 1,
-                            delay: this.$anime.stagger(50, {from: 'first'}),
-                            duration: 700,
-                        })
-                    }
-                },
-                offset: '50%',
+                this.$anime({
+                    targets: '.bio__text p',
+                    textShadow: [
+                        '0px 0px 0px rgba(36.5%, 91%, 89.8%, 0), 0px 0px 0px rgba(95.7%, 30.2%, 60.8%, 0)',
+                        '0px 20px 2px rgba(36.5%, 91%, 89.8%, 1), 0px 10px 2px rgba(95.7%, 30.2%, 60.8%, 1)',
+                        '0px -10px 2px rgba(36.5%, 91%, 89.8%, 1), 0px -20px 2px rgba(95.7%, 30.2%, 60.8%, 1)',
+                        '0px 0px 0px rgba(36.5%, 91%, 89.8%, 0), 0px 0px 0px rgba(95.7%, 30.2%, 60.8%, 0)',
+                    ],
+                    easing: 'linear',
+                    duration: 2000,
+                    delay: this.$anime.stagger(150, {from: 'first'}),
+                })
             })
 
+            document.addEventListener('aos:out:bio-text', ({detail}) => {
+                this.$anime.remove('.bio__text p')
 
-            new Waypoint({
-                element: document.querySelector('.bio'),
-                handler: (direction) => {
-                    if(direction === 'up') {
-                        this.$anime({
-                            targets: '.bio__video',
-                            scale: 1.1,
-                            opacity: 0,
-                            duration: 500,
-                            easing: 'linear',
-                        })
-
-
-
-
-                    } else {
-                        this.$anime({
-                            targets: '.bio__video',
-                            scale: 1,
-                            opacity: 1,
-                            duration: 500,
-                            easing: 'linear',
-                        })
-                    }
-                },
-                offset: '80%',
+                this.$anime({
+                    targets: '.bio__text p',
+                    translateY: 0,
+                    translateZ: 0,
+                    opacity: 0,
+                    duration: 1500,
+                    delay: this.$anime.stagger(200, {from: 'last'}),
+                })
             })
         },
 
@@ -123,6 +111,7 @@
 <style lang="sass">
     .bio
         position: relative
+        z-index: 2
         &:before
             content: ''
             position: absolute
@@ -143,8 +132,6 @@
             padding-top: 50px
             position: relative
             z-index: 2
-            span
-                opacity: 0
 
             p
                 font-size: 1.125rem
@@ -154,8 +141,10 @@
                 letter-spacing: 0.028rem
                 flex-wrap: wrap
                 margin-bottom: 2rem
+                opacity: 0
                 span
                     margin-right: 10px
+                    // opacity: 0
 
         &__video
             background: url('~images/anisa.jpg') no-repeat center
@@ -168,7 +157,6 @@
             background-size: cover
             overflow: hidden
             z-index: 5
-            opacity: 0
             video
                 position: absolute
                 left: 0
