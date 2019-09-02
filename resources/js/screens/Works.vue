@@ -145,6 +145,7 @@
 <style lang="sass">
     .works
         padding-top: 240px
+        background-color: $white
         .container
             max-width: 1550px
         &__filter
