@@ -48,26 +48,13 @@
 
         mounted() {
             document.addEventListener('aos:in:bio-text', ({detail}) => {
-                // let filteredTargets = [];
-                // for (var el of document.querySelectorAll('.bio__text span')) {
-                //     if(el.style.opacity != 1) filteredTargets.push(el)
-                // }
-                // this.$anime.remove('.bio__text span')
-
-                // this.$anime({
-                //     targets: filteredTargets,
-                //     translateX: [-15, 0],
-                //     translateZ: 0,
-                //     opacity: [0, 1],
-                //     delay: this.$anime.stagger(50, {from: 'first'}),
-                //     duration: 700,
-                // })
+                this.$anime.remove('.bio__text p')
 
                 this.$anime({
                     targets: '.bio__text p',
                     translateY: [-50, 0],
                     translateZ: 0,
-                    opacity: 1,
+                    opacity: [0, 1],
                     easing: 'spring(10, 80, 30, 10)',
                     delay: this.$anime.stagger(250, {from: 'first'}),
                 })
