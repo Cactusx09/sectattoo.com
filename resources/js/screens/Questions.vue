@@ -20,13 +20,7 @@
                 class="questions__body">
                 <div class="questions__names">
                     <p v-for="(question, index) in questions" :key="question.id">
-                        <span @click="
-                                selectedQuestion = {
-                                    text: question.text,
-                                    index: index,
-                                }
-                                $emit('set-questions');
-                            "
+                        <span @click="setQuestionAnime(question, index)"
                             :class="{ '_active': selectedQuestion.index === index }">
                             {{ question.name }}
                         </span>
@@ -144,6 +138,39 @@
                     easing: 'linear',
                 })
             })
+        },
+
+        methods: {
+            setQuestionAnime(question, index) {
+                this.$anime.remove('.questions__text')
+
+                this.selectedQuestion = {
+                    text: question.text,
+                    index: index,
+                }
+                this.$emit('set-questions')
+
+
+                this.$anime({
+                    targets: '.questions__text',
+                    translateX: [-30, 0],
+                    translateZ: 0,
+                    easing: 'spring(10, 80, 30, 10)',
+                })
+
+                this.$anime({
+                    targets: '.questions__text',
+                    opacity: [0, 1],
+                    textShadow: [
+                        '0px 0px 0px rgba(36.5%, 91%, 89.8%, 0), 0px 0px 0px rgba(95.7%, 30.2%, 60.8%, 0)',
+                        '15px 0px 0px rgba(36.5%, 91%, 89.8%, 1), 7px 0px 0px rgba(95.7%, 30.2%, 60.8%, 1)',
+                        '-7px 0px 0px rgba(36.5%, 91%, 89.8%, 1), -15px 0px 0px rgba(95.7%, 30.2%, 60.8%, 1)',
+                        '0px 0px 0px rgba(36.5%, 91%, 89.8%, 0), 0px 0px 0px rgba(95.7%, 30.2%, 60.8%, 0)',
+                    ],
+                    easing: 'linear',
+                    duration: 2000,
+                })
+            },
         },
     }
 </script>
