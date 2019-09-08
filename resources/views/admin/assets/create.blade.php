@@ -60,19 +60,6 @@
                     {{ trans('cruds.asset.fields.photos_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('status_id') ? 'has-error' : '' }}">
-                <label for="status">{{ trans('cruds.asset.fields.status') }}*</label>
-                <select name="status_id" id="status" class="form-control select2" required>
-                    @foreach($statuses as $id => $status)
-                        <option value="{{ $id }}" {{ (isset($asset) && $asset->status ? $asset->status->id : old('status_id')) == $id ? 'selected' : '' }}>{{ $status }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('status_id'))
-                    <p class="help-block">
-                        {{ $errors->first('status_id') }}
-                    </p>
-                @endif
-            </div>
             <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
                 <label for="location">{{ trans('cruds.asset.fields.location') }}*</label>
                 <select name="location_id" id="location" class="form-control select2" required>

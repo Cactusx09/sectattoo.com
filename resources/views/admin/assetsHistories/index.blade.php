@@ -21,9 +21,6 @@
                             {{ trans('cruds.assetsHistory.fields.asset') }}
                         </th>
                         <th>
-                            {{ trans('cruds.assetsHistory.fields.status') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.assetsHistory.fields.location') }}
                         </th>
                         <th>
@@ -48,9 +45,6 @@
                             </td>
                             <td>
                                 {{ $assetsHistory->asset->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $assetsHistory->status->name ?? '' }}
                             </td>
                             <td>
                                 {{ $assetsHistory->location->name ?? '' }}
@@ -80,7 +74,7 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-  
+
   $.extend(true, $.fn.dataTable.defaults, {
     order: [[ 1, 'desc' ]],
     pageLength: 100,

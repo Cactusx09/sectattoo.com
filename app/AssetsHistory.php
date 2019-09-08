@@ -15,7 +15,6 @@ class AssetsHistory extends Model
 
     protected $fillable = [
         'asset_id',
-        'status_id',
         'created_at',
         'updated_at',
         'location_id',
@@ -25,11 +24,6 @@ class AssetsHistory extends Model
     public function asset()
     {
         return $this->belongsTo(Asset::class, 'asset_id');
-    }
-
-    public function status()
-    {
-        return $this->belongsTo(AssetStatus::class, 'status_id');
     }
 
     public function location()

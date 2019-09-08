@@ -170,36 +170,6 @@ class PermissionsTableSeeder extends Seeder
                 'updated_at' => '2019-09-03 12:55:56',
             ],
             [
-                'id'         => '28',
-                'title'      => 'asset_status_create',
-                'created_at' => '2019-09-03 12:55:56',
-                'updated_at' => '2019-09-03 12:55:56',
-            ],
-            [
-                'id'         => '29',
-                'title'      => 'asset_status_edit',
-                'created_at' => '2019-09-03 12:55:56',
-                'updated_at' => '2019-09-03 12:55:56',
-            ],
-            [
-                'id'         => '30',
-                'title'      => 'asset_status_show',
-                'created_at' => '2019-09-03 12:55:56',
-                'updated_at' => '2019-09-03 12:55:56',
-            ],
-            [
-                'id'         => '31',
-                'title'      => 'asset_status_delete',
-                'created_at' => '2019-09-03 12:55:56',
-                'updated_at' => '2019-09-03 12:55:56',
-            ],
-            [
-                'id'         => '32',
-                'title'      => 'asset_status_access',
-                'created_at' => '2019-09-03 12:55:56',
-                'updated_at' => '2019-09-03 12:55:56',
-            ],
-            [
                 'id'         => '33',
                 'title'      => 'asset_create',
                 'created_at' => '2019-09-03 12:55:56',

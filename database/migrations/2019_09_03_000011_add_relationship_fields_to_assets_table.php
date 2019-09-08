@@ -11,8 +11,6 @@ class AddRelationshipFieldsToAssetsTable extends Migration
         Schema::table('assets', function (Blueprint $table) {
             $table->unsignedInteger('category_id')->nullable();
             $table->foreign('category_id', 'category_fk_292473')->references('id')->on('asset_categories');
-            $table->unsignedInteger('status_id')->nullable();
-            $table->foreign('status_id', 'status_fk_292477')->references('id')->on('asset_statuses');
             $table->unsignedInteger('location_id')->nullable();
             $table->foreign('location_id', 'location_fk_292478')->references('id')->on('asset_locations');
             $table->unsignedInteger('assigned_to_id')->nullable();
