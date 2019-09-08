@@ -1,75 +1,54 @@
-@extends('layouts.auth')
-
+@extends('layouts.app')
 @section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">@lang('quickadmin.qa_reset_password')</div>
-                <div class="panel-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            @lang('quickadmin.qa_reset_password_woops')
-                            <br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal"
-                          role="form"
-                          method="POST"
-                          action="{{ url('password/reset') }}">
-                        <input type="hidden"
-                               name="_token"
-                               value="{{ csrf_token() }}">
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">@lang('quickadmin.qa_email')</label>
-
-                            <div class="col-md-6">
-                                <input type="email"
-                                       class="form-control"
-                                       name="email"
-                                       value="{{ old('email') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">@lang('quickadmin.qa_password')</label>
-
-                            <div class="col-md-6">
-                                <input type="password"
-                                       class="form-control"
-                                       name="password">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">@lang('quickadmin.qa_confirm_password')</label>
-
-                            <div class="col-md-6">
-                                <input type="password"
-                                       class="form-control"
-                                       name="password_confirmation">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit"
-                                        class="btn btn-primary"
-                                        style="margin-right: 15px;">
-                                    @lang('quickadmin.qa_reset_password')
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="login-box">
+    <div class="login-logo">
+        <div class="login-logo">
+            <a href="#">
+                {{ trans('panel.site_title') }}
+            </a>
         </div>
     </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">{{ trans('global.reset_password') }}</p>
+            <form method="POST" action="{{ route('password.request') }}">
+                {{ csrf_field() }}
+                <div>
+                    <input name="token" value="{{ $token }}" type="hidden">
+                    <div class="form-group has-feedback">
+                        <input type="email" name="email" class="form-control" required placeholder="{{ trans('global.login_email') }}">
+                        @if($errors->has('email'))
+                            <p class="help-block">
+                                {{ $errors->first('email') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" name="password" class="form-control" required placeholder="{{ trans('global.login_password') }}">
+                        @if($errors->has('password'))
+                            <p class="help-block">
+                                {{ $errors->first('password') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
+                        @if($errors->has('password_confirmation'))
+                            <p class="help-block">
+                                {{ $errors->first('password_confirmation') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">
+                            {{ trans('global.reset_password') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

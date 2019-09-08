@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Role;
-use App\User;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,64 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $user = \Auth::user();
-
-        
-        // Auth gates for: User management
-        Gate::define('user_management_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Roles
-        Gate::define('role_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('role_create', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('role_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('role_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('role_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Users
-        Gate::define('user_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('user_create', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('user_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('user_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('user_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Works
-        Gate::define('work_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('work_create', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('work_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('work_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('work_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
+        if (!app()->runningInConsole()) {
+            Passport::routes();
+        };
     }
 }

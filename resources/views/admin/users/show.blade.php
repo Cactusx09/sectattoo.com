@@ -1,38 +1,82 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.users.title')</h3>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.qa_view')
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.show') }} {{ trans('cruds.user.title') }}
+    </div>
+
+    <div class="card-body">
+        <div class="mb-2">
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.id') }}
+                        </th>
+                        <td>
+                            {{ $user->id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.name') }}
+                        </th>
+                        <td>
+                            {{ $user->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <td>
+                            {{ $user->email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.email_verified_at') }}
+                        </th>
+                        <td>
+                            {{ $user->email_verified_at }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Roles
+                        </th>
+                        <td>
+                            @foreach($user->roles as $id => $roles)
+                                <span class="label label-info label-many">{{ $roles->title }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
+                {{ trans('global.back_to_list') }}
+            </a>
         </div>
 
-        <div class="panel-body table-responsive">
-            <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>@lang('quickadmin.users.fields.name')</th>
-                            <td field-key='name'>{{ $user->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.users.fields.email')</th>
-                            <td field-key='email'>{{ $user->email }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.users.fields.role')</th>
-                            <td field-key='role'>{{ $user->role->title ?? '' }}</td>
-                        </tr>
-                    </table>
-                </div>
+        <nav class="mb-3">
+            <div class="nav nav-tabs">
+                <a class="active nav-link nav-item" data-toggle="tab" href="#Asset">
+                    Asset
+                </a>
+                <a class="nav-link nav-item" data-toggle="tab" href="#AssetsHistory">
+                    AssetsHistory
+                </a>
             </div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('admin.users.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+        </nav>
+        <div class="tab-content">
+            <div class="tab-pane fade in show active" id="Asset">
+                @includeIf('admin.users.relationships.assets', ['assets' => $user->assets])
+            </div>
+            <div class="tab-pane fade in" id="AssetsHistory">
+                @includeIf('admin.users.relationships.assetshistories', ['assetshistories' => $user->assetshistories])
+            </div>
         </div>
     </div>
-@stop
-
-
+</div>
+@endsection
