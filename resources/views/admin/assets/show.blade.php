@@ -52,14 +52,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.asset.fields.status') }}
-                        </th>
-                        <td>
-                            {{ $asset->status->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.asset.fields.location') }}
                         </th>
                         <td>

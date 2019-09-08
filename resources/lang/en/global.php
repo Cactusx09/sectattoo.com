@@ -212,8 +212,6 @@ return [
     'slug'                                 => 'Slug',
     'start_date'                           => 'Start date',
     'start_time'                           => 'Start time',
-    'status'                               => 'Status',
-    'statuses'                             => 'Statuses',
     'stripe_transactions'                  => 'Stripe Transactions',
     'subject'                              => 'Subject',
     'subscription-billing'                 => 'Subscriptions',

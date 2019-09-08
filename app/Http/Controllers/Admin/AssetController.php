@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Asset;
 use App\AssetCategory;
 use App\AssetLocation;
-use App\AssetStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyAssetRequest;
@@ -35,13 +34,11 @@ class AssetController extends Controller
 
         $categories = AssetCategory::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $statuses = AssetStatus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $locations = AssetLocation::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $assigned_tos = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.assets.create', compact('categories', 'statuses', 'locations', 'assigned_tos'));
+        return view('admin.assets.create', compact('categories', 'locations', 'assigned_tos'));
     }
 
     public function store(StoreAssetRequest $request)
@@ -61,15 +58,13 @@ class AssetController extends Controller
 
         $categories = AssetCategory::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $statuses = AssetStatus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $locations = AssetLocation::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $assigned_tos = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $asset->load('category', 'status', 'location', 'assigned_to');
+        $asset->load('category', 'location', 'assigned_to');
 
-        return view('admin.assets.edit', compact('categories', 'statuses', 'locations', 'assigned_tos', 'asset'));
+        return view('admin.assets.edit', compact('categories', 'locations', 'assigned_tos', 'asset'));
     }
 
     public function update(UpdateAssetRequest $request, Asset $asset)
@@ -99,7 +94,7 @@ class AssetController extends Controller
     {
         abort_if(Gate::denies('asset_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $asset->load('category', 'status', 'location', 'assigned_to');
+        $asset->load('category', 'location', 'assigned_to');
 
         return view('admin.assets.show', compact('asset'));
     }

@@ -27,7 +27,6 @@ class Asset extends Model implements HasMedia
     protected $fillable = [
         'name',
         'notes',
-        'status_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -61,11 +60,6 @@ class Asset extends Model implements HasMedia
     public function getPhotosAttribute()
     {
         return $this->getMedia('photos');
-    }
-
-    public function status()
-    {
-        return $this->belongsTo(AssetStatus::class, 'status_id');
     }
 
     public function location()

@@ -20,7 +20,7 @@ class AssetApiController extends Controller
     {
         abort_if(Gate::denies('asset_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AssetResource(Asset::with(['category', 'status', 'location', 'assigned_to'])->get());
+        return new AssetResource(Asset::with(['category', 'location', 'assigned_to'])->get());
     }
 
     public function store(StoreAssetRequest $request)
@@ -32,15 +32,14 @@ class AssetApiController extends Controller
         }
 
         return (new AssetResource($asset))
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+            ->response();
     }
 
     public function show(Asset $asset)
     {
         abort_if(Gate::denies('asset_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AssetResource($asset->load(['category', 'status', 'location', 'assigned_to']));
+        return new AssetResource($asset->load(['category', 'location', 'assigned_to']));
     }
 
     public function update(UpdateAssetRequest $request, Asset $asset)
@@ -56,8 +55,7 @@ class AssetApiController extends Controller
         }
 
         return (new AssetResource($asset))
-            ->response()
-            ->setStatusCode(Response::HTTP_ACCEPTED);
+            ->response();
     }
 
     public function destroy(Asset $asset)

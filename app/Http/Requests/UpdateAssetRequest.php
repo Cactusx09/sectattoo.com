@@ -26,10 +26,6 @@ class UpdateAssetRequest extends FormRequest
             'name'        => [
                 'required',
             ],
-            'status_id'   => [
-                'required',
-                'integer',
-            ],
             'location_id' => [
                 'required',
                 'integer',
