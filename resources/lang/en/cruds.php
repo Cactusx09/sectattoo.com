@@ -93,8 +93,6 @@ return [
             'id_helper'            => '',
             'category'             => 'Category',
             'category_helper'      => '',
-            'serial_number'        => 'Serial Number',
-            'serial_number_helper' => '',
             'name'                 => 'Name',
             'name_helper'          => '',
             'photos'               => 'Photos',

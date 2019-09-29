@@ -29,9 +29,6 @@
                             {{ trans('cruds.asset.fields.category') }}
                         </th>
                         <th>
-                            {{ trans('cruds.asset.fields.serial_number') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.asset.fields.name') }}
                         </th>
                         <th>
@@ -59,9 +56,6 @@
                             </td>
                             <td>
                                 {{ $asset->category->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $asset->serial_number ?? '' }}
                             </td>
                             <td>
                                 {{ $asset->name ?? '' }}

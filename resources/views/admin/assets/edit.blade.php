@@ -23,18 +23,6 @@
                     </p>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('serial_number') ? 'has-error' : '' }}">
-                <label for="serial_number">{{ trans('cruds.asset.fields.serial_number') }}</label>
-                <input type="text" id="serial_number" name="serial_number" class="form-control" value="{{ old('serial_number', isset($asset) ? $asset->serial_number : '') }}">
-                @if($errors->has('serial_number'))
-                    <p class="help-block">
-                        {{ $errors->first('serial_number') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.asset.fields.serial_number_helper') }}
-                </p>
-            </div>
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.asset.fields.name') }}*</label>
                 <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($asset) ? $asset->name : '') }}" required>

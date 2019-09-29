@@ -28,14 +28,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.asset.fields.serial_number') }}
-                        </th>
-                        <td>
-                            {{ $asset->serial_number }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.asset.fields.name') }}
                         </th>
                         <td>

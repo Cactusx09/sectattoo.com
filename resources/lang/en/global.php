@@ -204,7 +204,6 @@ return [
     'select_dt_placeholder'                => 'Please select one of date/time fields',
     'select_users_placeholder'             => 'Please select one of your Users',
     'send'                                 => 'Send',
-    'serial_number'                        => 'Serial number',
     'simple_user'                          => 'Simple user',
     'skype'                                => 'Skype',
     'slug'                                 => 'Slug',
