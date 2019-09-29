@@ -1,5 +1,19 @@
 <?php
 
-Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
-    Route::resource('works', 'WorksController', ['except' => ['create', 'edit']]);
+Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
+    // Permissions
+    Route::apiResource('permissions', 'PermissionsApiController');
+
+    // Roles
+    Route::apiResource('roles', 'RolesApiController');
+
+    // Users
+    Route::apiResource('users', 'UsersApiController');
+
+    // Assetcategories
+    Route::apiResource('asset-categories', 'AssetCategoryApiController');
+
+    // Assets
+    Route::post('assets/media', 'AssetApiController@storeMedia')->name('assets.storeMedia');
+    Route::apiResource('assets', 'AssetApiController');
 });

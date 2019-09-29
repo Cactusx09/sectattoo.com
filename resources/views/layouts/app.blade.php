@@ -1,58 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    @include('partials.head')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ trans('panel.site_title') }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/adminltev3.css') }}" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/icheck-bootstrap@3.0.1/icheck-bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    @yield('styles')
 </head>
 
-
-<body class="hold-transition skin-blue sidebar-mini">
-
-<div id="wrapper">
-
-@include('partials.topbar')
-@include('partials.sidebar')
-
-<!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Main content -->
-        <section class="content">
-            @if(isset($siteTitle))
-                <h3 class="page-title">
-                    {{ $siteTitle }}
-                </h3>
-            @endif
-
-            <div class="row">
-                <div class="col-md-12">
-
-                    @if (Session::has('message'))
-                        <div class="alert alert-info">
-                            <p>{{ Session::get('message') }}</p>
-                        </div>
-                    @endif
-                    @if ($errors->count() > 0)
-                        <div class="alert alert-danger">
-                            <ul class="list-unstyled">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    @yield('content')
-
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
-
-{!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}
-<button type="submit">Logout</button>
-{!! Form::close() !!}
-
-@include('partials.javascripts')
+<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page">
+    @yield('content')
+    @yield('scripts')
 </body>
+
 </html>

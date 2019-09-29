@@ -1,34 +1,33 @@
 <?php
-Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+Route::get('/', 'MainController@index')->where('any', '.*');
 
-// Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login')->name('auth.login');
-Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
+// Route::redirect('/', '/login');
+Route::redirect('/home', '/admin');
+Auth::routes(['register' => false]);
 
-// Change Password Routes...
-Route::get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
-Route::patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    // Permissions
+    Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
+    Route::resource('permissions', 'PermissionsController');
 
-// Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.password.reset');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.password.reset');
+    // Roles
+    Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
+    Route::resource('roles', 'RolesController');
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    // Route::get('/home', 'HomeController@index');
+    // Users
+    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::resource('users', 'UsersController');
 
-    Route::resource('roles', 'Admin\RolesController');
-    Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
-    Route::resource('users', 'Admin\UsersController');
-    Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('works', 'Admin\WorksController');
-    Route::post('works_mass_destroy', ['uses' => 'Admin\WorksController@massDestroy', 'as' => 'works.mass_destroy']);
-    Route::post('works_restore/{id}', ['uses' => 'Admin\WorksController@restore', 'as' => 'works.restore']);
-    Route::delete('works_perma_del/{id}', ['uses' => 'Admin\WorksController@perma_del', 'as' => 'works.perma_del']);
+    // Assetcategories
+    Route::delete('asset-categories/destroy', 'AssetCategoryController@massDestroy')->name('asset-categories.massDestroy');
+    Route::resource('asset-categories', 'AssetCategoryController');
 
+    // Assets
+    Route::delete('assets/destroy', 'AssetController@massDestroy')->name('assets.massDestroy');
+    Route::post('assets/media', 'AssetController@storeMedia')->name('assets.storeMedia');
+    Route::resource('assets', 'AssetController');
 
-
-
+    // Assetshistories
+    Route::resource('assets-histories', 'AssetsHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 });

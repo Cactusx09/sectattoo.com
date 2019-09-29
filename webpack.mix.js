@@ -18,7 +18,7 @@ mix.webpackConfig({
             {
                 test: /\.(webm|mp4)$/,
                 loader: 'file-loader',
-            }
+            },
         ],
     },
 });

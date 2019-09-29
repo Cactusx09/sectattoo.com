@@ -84,7 +84,7 @@
             this.selectedQuestion = {
                 text: this.questions[0].text,
                 index: 0,
-            };
+            }
         },
 
         mounted() {
