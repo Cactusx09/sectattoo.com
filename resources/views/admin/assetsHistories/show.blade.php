@@ -28,14 +28,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.assetsHistory.fields.location') }}
-                        </th>
-                        <td>
-                            {{ $assetsHistory->location->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.assetsHistory.fields.assigned_user') }}
                         </th>
                         <td>

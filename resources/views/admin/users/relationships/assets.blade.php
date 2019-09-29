@@ -36,9 +36,6 @@
                             {{ trans('cruds.asset.fields.photos') }}
                         </th>
                         <th>
-                            {{ trans('cruds.asset.fields.location') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.asset.fields.notes') }}
                         </th>
                         <th>
@@ -75,9 +72,6 @@
                                         </a>
                                     @endforeach
                                 @endif
-                            </td>
-                            <td>
-                                {{ $asset->location->name ?? '' }}
                             </td>
                             <td>
                                 {{ $asset->notes ?? '' }}

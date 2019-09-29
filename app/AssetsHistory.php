@@ -17,18 +17,12 @@ class AssetsHistory extends Model
         'asset_id',
         'created_at',
         'updated_at',
-        'location_id',
         'assigned_user_id',
     ];
 
     public function asset()
     {
         return $this->belongsTo(Asset::class, 'asset_id');
-    }
-
-    public function location()
-    {
-        return $this->belongsTo(AssetLocation::class, 'location_id');
     }
 
     public function assigned_user()

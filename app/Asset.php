@@ -31,7 +31,6 @@ class Asset extends Model implements HasMedia
         'updated_at',
         'deleted_at',
         'category_id',
-        'location_id',
         'serial_number',
         'assigned_to_id',
     ];
@@ -60,11 +59,6 @@ class Asset extends Model implements HasMedia
     public function getPhotosAttribute()
     {
         return $this->getMedia('photos');
-    }
-
-    public function location()
-    {
-        return $this->belongsTo(AssetLocation::class, 'location_id');
     }
 
     public function assigned_to()

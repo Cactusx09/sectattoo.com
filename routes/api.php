@@ -13,9 +13,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Assetcategories
     Route::apiResource('asset-categories', 'AssetCategoryApiController');
 
-    // Assetlocations
-    Route::apiResource('asset-locations', 'AssetLocationApiController');
-
     // Assets
     Route::post('assets/media', 'AssetApiController@storeMedia')->name('assets.storeMedia');
     Route::apiResource('assets', 'AssetApiController');

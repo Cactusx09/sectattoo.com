@@ -12,7 +12,6 @@ class AssetsHistoryObserver
         if (auth()->check()) {
             AssetsHistory::create([
                 'asset_id'         => $asset->id,
-                'location_id'      => $asset->location_id,
                 'assigned_user_id' => $asset->assigned_to_id,
             ]);
         };

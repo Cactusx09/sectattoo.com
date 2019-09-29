@@ -26,10 +26,6 @@ class UpdateAssetRequest extends FormRequest
             'name'        => [
                 'required',
             ],
-            'location_id' => [
-                'required',
-                'integer',
-            ],
         ];
     }
 }

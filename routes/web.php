@@ -23,10 +23,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('asset-categories/destroy', 'AssetCategoryController@massDestroy')->name('asset-categories.massDestroy');
     Route::resource('asset-categories', 'AssetCategoryController');
 
-    // Assetlocations
-    Route::delete('asset-locations/destroy', 'AssetLocationController@massDestroy')->name('asset-locations.massDestroy');
-    Route::resource('asset-locations', 'AssetLocationController');
-
     // Assets
     Route::delete('assets/destroy', 'AssetController@massDestroy')->name('assets.massDestroy');
     Route::post('assets/media', 'AssetController@storeMedia')->name('assets.storeMedia');
