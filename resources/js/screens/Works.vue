@@ -77,6 +77,7 @@
             axios.get('/api/v1/works').then((data) => {
                 console.log(data)
             })
+            debugger;
 
             document.addEventListener('aos:in:works-filter', ({detail}) => {
                 this.$anime({

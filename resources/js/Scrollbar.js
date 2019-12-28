@@ -152,9 +152,7 @@ const ScrollAnimations = data => {
                 //     variables.parentElements[a]
                 // );
 
-                if (
-                    isVisible
-                ) {
+                if (isVisible) {
                     classManipulate.add(variables.elements[a], 'aos-animate', direction);
                 } else if (
                     !isVisible &&

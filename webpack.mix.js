@@ -21,6 +21,11 @@ mix.webpackConfig({
             },
         ],
     },
+}).options({
+    hmrOptions: {
+        host: 'sectattoo.test',
+        port: '3030'
+    }
 });
 
 /*
@@ -39,4 +44,5 @@ mix.js('resources/js/app.js', 'public/js')
     .options({
         globalVueStyles: 'resources/sass/web/_vars.sass',
     })
-    .disableNotifications();
+    .disableNotifications()
+    .sourceMaps(false, 'source-map');

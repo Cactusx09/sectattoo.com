@@ -17,3 +17,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('assets/media', 'AssetApiController@storeMedia')->name('assets.storeMedia');
     Route::apiResource('assets', 'AssetApiController');
 });
+
+Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], function () {
+    // Assets
+    Route::apiResource('works', 'AssetApiController');
+});
