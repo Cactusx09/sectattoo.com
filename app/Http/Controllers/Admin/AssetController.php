@@ -35,7 +35,7 @@ class AssetController extends Controller
 
         $assigned_tos = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.assets.create', compact('categories', 'locations', 'assigned_tos'));
+        return view('admin.assets.create', compact('categories', 'assigned_tos'));
     }
 
     public function store(StoreAssetRequest $request)

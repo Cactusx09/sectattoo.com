@@ -18,7 +18,7 @@ class AssetApiController extends Controller
 
     public function index()
     {
-        // abort_if(Gate::denies('asset_access'), Response::HTTP_FORBIDDEN, '403 Forbidden fdf');
+        // abort_if(Gate::denies('asset_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new AssetResource(Asset::with(['category', 'assigned_to'])->get());
     }
@@ -37,7 +37,7 @@ class AssetApiController extends Controller
 
     public function show(Asset $asset)
     {
-        abort_if(Gate::denies('asset_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('asset_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new AssetResource($asset->load(['category', 'assigned_to']));
     }

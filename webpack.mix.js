@@ -21,11 +21,13 @@ mix.webpackConfig({
             },
         ],
     },
+    devtool: 'cheap-module-eval-sourcemap',
+    // devtool: 'cheap-eval-source-map',
 }).options({
     hmrOptions: {
         host: 'sectattoo.test',
-        port: '3030'
-    }
+        port: '3030',
+    },
 });
 
 /*
@@ -44,5 +46,5 @@ mix.js('resources/js/app.js', 'public/js')
     .options({
         globalVueStyles: 'resources/sass/web/_vars.sass',
     })
-    .disableNotifications()
-    .sourceMaps(false, 'source-map');
+    .disableNotifications();
+    // .sourceMaps();

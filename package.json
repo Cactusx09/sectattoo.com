@@ -35,8 +35,10 @@
         "animejs": "^3.0.1",
         "babel-loader": "^8.0.6",
         "file-loader": "^4.1.0",
+        "global": "^4.4.0",
         "sass-resources-loader": "^2.0.1",
         "smooth-scrollbar": "^8.4.0",
+        "vue-cli": "^2.9.6",
         "vue-router": "^3.0.6",
         "webpack": "^4.39.3"
     }
