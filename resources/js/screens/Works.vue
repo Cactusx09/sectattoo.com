@@ -64,11 +64,11 @@
             }
         },
 
-        mounted() {
-            axios.get('/api/v1/works').then(({ data }) => {
-                this.images = data
-            })
+        created() {
+            this.getData();
+        },
 
+        mounted() {
             document.addEventListener('aos:in:works-filter', () => {
                 this.$anime({
                     targets: '.works__filter a',
@@ -115,7 +115,19 @@
         },
 
         methods: {
+            getData(filterId) {
+                axios.get('/api/v1/works', {
+                    params: {
+                        filter_id: filterId,
+                    },
+                }).then(({ data: { assets, categories } }) => {
+                    this.images = assets
+                    this.filters = categories
+                })
+            },
             filterWorks(selectedFilter) {
+                this.getData(selectedFilter.id)
+
                 this.filters.forEach((filter) => {
                     this.$set(filter, 'active', filter.id === selectedFilter.id)
                 })

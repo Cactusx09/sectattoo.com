@@ -12,67 +12,40 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\AssetCategory;
+
 class AssetApiController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        // abort_if(Gate::denies('asset_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        if ($request->filter_id) {
+            $assets = Asset::where('category_id', $request->filter_id)->get();
+        } else {
+            $assets = Asset::all();
+        }
 
-        $assets = Asset::all();
         foreach ($assets as $key => $asset) {
-            // dd($asset[0]);
             $assets[$key] = [
                 'id' => $asset->id,
-                'thumbUrl' => $asset->getMedia('photos')->first()->getFullUrl('works'),
+                'thumbUrl' => $asset->getPhotosAttribute()->first()->getFullUrl('works'),
             ];
         }
-        return $assets;
-    }
 
-    public function store(StoreAssetRequest $request)
-    {
-        $asset = Asset::create($request->all());
+        $data = [
+            'assets' => $assets,
+            'categories' => AssetCategory::all(),
+        ];
 
-        if ($request->input('photos', false)) {
-            $asset->addMedia(storage_path('tmp/uploads/' . $request->input('photos')))->toMediaCollection('photos');
-        }
-
-        return (new AssetResource($asset))
-            ->response();
+        return $data;
     }
 
     public function modal(Request $id)
     {
         $work = Asset::findOrFail($id)->first();
-        $work->thumbUrl = $work->getMedia('photos')->first()->getFullUrl();
+        $work->thumbUrl = $work->getPhotosAttribute()->first()->getFullUrl();
 
         return $work;
-    }
-
-    public function update(UpdateAssetRequest $request, Asset $asset)
-    {
-        $asset->update($request->all());
-
-        if ($request->input('photos', false)) {
-            if (!$asset->photos || $request->input('photos') !== $asset->photos->file_name) {
-                $asset->addMedia(storage_path('tmp/uploads/' . $request->input('photos')))->toMediaCollection('photos');
-            }
-        } elseif ($asset->photos) {
-            $asset->photos->delete();
-        }
-
-        return (new AssetResource($asset))
-            ->response();
-    }
-
-    public function destroy(Asset $asset)
-    {
-        abort_if(Gate::denies('asset_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $asset->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
