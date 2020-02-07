@@ -69,27 +69,27 @@
                 this.images = data
             })
 
-            document.addEventListener('aos:in:works-filter', ({detail}) => {
+            document.addEventListener('aos:in:works-filter', () => {
                 this.$anime({
                     targets: '.works__filter a',
                     opacity: [0, 1],
                     translateX: [0, -35],
                     duration: 200,
-                    delay: this.$anime.stagger(150, {from: 'first'}),
+                    delay: this.$anime.stagger(150, { from: 'first' }),
                 })
             })
-            document.addEventListener('aos:out:works-filter', ({detail}) => {
+            document.addEventListener('aos:out:works-filter', () => {
                 this.$anime({
                     targets: '.works__filter a',
                     opacity: [1, 0],
                     translateX: [-35, 0],
                     duration: 200,
-                    delay: this.$anime.stagger(75, {from: 'last'}),
+                    delay: this.$anime.stagger(75, { from: 'last' }),
                 })
             })
 
 
-            document.addEventListener('aos:in:works-body', ({detail}) => {
+            document.addEventListener('aos:in:works-body', () => {
                 this.$anime({
                     targets: '.works__item',
                     opacity: [0, 1],
@@ -98,16 +98,16 @@
                     translateY: [() => this.$anime.random(-25, 25), 0],
                     duration: 700,
                     easing: 'linear',
-                    delay: this.$anime.stagger(400, {grid: [3, 5], from: 0}),
+                    delay: this.$anime.stagger(400, { grid: [3, 5], from: 0 }),
                 })
             })
-            document.addEventListener('aos:out:works-body', ({detail}) => {
-                let targets = [...document.querySelectorAll('.works__item')]
+            document.addEventListener('aos:out:works-body', () => {
+                const targets = [...document.querySelectorAll('.works__item')]
 
                 this.$anime({
                     targets: targets.splice(0, 4),
                     opacity: [1, 0],
-                    scale: [1, .8],
+                    scale: [1, 0.8],
                     duration: 200,
                     delay: this.$anime.stagger(150, {from: 'last'}),
                 })
@@ -116,7 +116,7 @@
 
         methods: {
             filterWorks(selectedFilter) {
-                this.filters.forEach(filter => {
+                this.filters.forEach((filter) => {
                     this.$set(filter, 'active', filter.id === selectedFilter.id)
                 })
 
