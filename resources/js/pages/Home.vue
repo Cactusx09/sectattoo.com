@@ -4,7 +4,7 @@
 
         <bio/>
 
-        <works/>
+        <works v-on="$listeners"/>
 
         <contacts/>
 

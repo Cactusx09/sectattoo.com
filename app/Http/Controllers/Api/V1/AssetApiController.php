@@ -20,7 +20,15 @@ class AssetApiController extends Controller
     {
         // abort_if(Gate::denies('asset_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AssetResource(Asset::with(['category', 'assigned_to'])->get());
+        $assets = Asset::all();
+        foreach ($assets as $key => $asset) {
+            // dd($asset[0]);
+            $assets[$key] = [
+                'id' => $asset->id,
+                'thumbUrl' => $asset->getMedia('photos')->first()->getFullUrl('works'),
+            ];
+        }
+        return $assets;
     }
 
     public function store(StoreAssetRequest $request)
@@ -35,11 +43,12 @@ class AssetApiController extends Controller
             ->response();
     }
 
-    public function show(Asset $asset)
+    public function modal(Request $id)
     {
-        // abort_if(Gate::denies('asset_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $work = Asset::findOrFail($id)->first();
+        $work->thumbUrl = $work->getMedia('photos')->first()->getFullUrl();
 
-        return new AssetResource($asset->load(['category', 'assigned_to']));
+        return $work;
     }
 
     public function update(UpdateAssetRequest $request, Asset $asset)

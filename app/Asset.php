@@ -43,6 +43,7 @@ class Asset extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')->width(50)->height(50);
+        $this->addMediaConversion('works')->width(437)->height(532);
     }
 
     public function assetsHistories()

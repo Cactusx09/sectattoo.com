@@ -20,5 +20,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], function () {
     // Assets
-    Route::apiResource('works', 'AssetApiController');
+    Route::get('works', 'AssetApiController@index');
+    Route::get('works/modal', 'AssetApiController@modal');
 });

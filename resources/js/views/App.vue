@@ -1,26 +1,41 @@
 <template>
-    <div class="app" id="app">
-        <header class="header">
-            <div class="container">
-                <nav class="header__nav">
-                    <a href="#"><span>about me</span></a>
-                    <a href="#"><span>my works</span></a>
-                    <a href="#"><span>FAQ</span></a>
-                </nav>
-            </div>
-        </header>
-        <router-view @set-questions="updateScroll()"></router-view>
+    <div class="wraper">
+        <div class="app" id="app">
+            <header class="header">
+                <div class="container">
+                    <nav class="header__nav">
+                        <a href="#"><span>about me</span></a>
+                        <a href="#"><span>my works</span></a>
+                        <a href="#"><span>FAQ</span></a>
+                    </nav>
+                </div>
+            </header>
+            <router-view
+                @open-modal="modalId = $event"
+                @set-questions="updateScroll()">
+            </router-view>
+        </div>
+
+        <modal
+            v-if="modalId"
+            :id="modalId"/>
     </div>
 </template>
 
 <script>
-    // import Scrollbar from 'smooth-scrollbar'
+    import Modal from '@components/Modal'
+
     import scrollAnimations from '../Scrollbar.js'
 
     export default {
+        components: {
+            Modal,
+        },
+
         data() {
             return {
                 scroll: null,
+                modalId: null,
             }
         },
         mounted() {
@@ -58,7 +73,7 @@
     @import '/fonts/fonts.css'
     @import 'resources/sass/web/reset.sass'
 
-    body
+    body,.wraper
         position: fixed
         left: 0
         top: 0

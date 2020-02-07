@@ -19,26 +19,15 @@
                 data-aos-id="works-body"
                 data-aos-top-offset="700"
                 data-aos-bottom-offset="-500">
-                    <a href="#"
+                    <a v-for="image in images" :key="image.id"
+                        @click="$emit('open-modal', image.id)"
                         class="works__item"
-                        style="background-image: url('http://placekitten.com/405/469')"></a>
-                    <a href="#"
-                        class="works__item"
-                        style="background-image: url('http://placekitten.com/415/469')"></a>
-                    <a href="#"
-                        class="works__item"
-                        style="background-image: url('http://placekitten.com/405/479')"></a>
-                    <a href="#"
-                        class="works__item"
-                        style="background-image: url('http://placekitten.com/408/499')"></a>
-                    <a href="#"
-                        class="works__item"
-                        style="background-image: url('http://placekitten.com/425/489')"></a>
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/444/449')"></a>
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/433/465')"></a>
-                    <a href="#" class="works__item" style="background-image: url('http://placekitten.com/422/479')"></a>
+                        :style="`background-image: url(${image.thumbUrl})`">
+                    </a>
             </div>
         </div>
+
+
     </section>
 </template>
 
@@ -70,12 +59,14 @@
                         name: 'text me',
                     },
                 ],
+                images: [],
+                modalId: null,
             }
         },
 
         mounted() {
-            axios.get('/api/v1/works').then((data) => {
-                console.log(data)
+            axios.get('/api/v1/works').then(({ data }) => {
+                this.images = data
             })
 
             document.addEventListener('aos:in:works-filter', ({detail}) => {
