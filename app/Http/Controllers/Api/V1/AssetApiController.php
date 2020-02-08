@@ -5,14 +5,11 @@ namespace App\Http\Controllers\Api\V1;
 use App\Asset;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\StoreAssetRequest;
-use App\Http\Requests\UpdateAssetRequest;
-use App\Http\Resources\Admin\AssetResource;
-use Gate;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use App\AssetCategory;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 
 class AssetApiController extends Controller
 {
@@ -47,5 +44,20 @@ class AssetApiController extends Controller
         $work->thumbUrl = $work->getPhotosAttribute()->first()->getFullUrl();
 
         return $work;
+    }
+
+    public function send(Request $data)
+    {
+        $compactData = [
+            "name" => $data->name,
+            "mail" => $data->mail,
+            "text" => $data->message,
+        ];
+
+        Mail::send('contact', $compactData, function($message) {
+            $message->to('cactusx09@gmail.com')->subject('Sectatoo "keep in touch with me" letter');
+        });
+
+        return 'Message recieved';
     }
 }

@@ -42,13 +42,18 @@
                                 <span>x</span>
                                 <span>t</span>
                             </label>
-                            <textarea v-model="formData.message"
+                            <textarea
+                                v-model="formData.message"
                                 class="textarea" name="message"
                                 @focus="focusFieldAnime('message')"
                                 @blur="blurFieldAnime('message')"/>
                         </div>
 
-                        <button class="button"><span><span>send</span></span></button>
+                        <button
+                            class="button"
+                            @click.prevent="send()">
+                            <span><span>send</span></span>
+                        </button>
                     </form>
 
                     <div class="contacts__info">
@@ -109,6 +114,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         data() {
             return {
@@ -244,7 +251,13 @@
                     })
                 }
             },
-        }
+            send() {
+                axios.post('/api/v1/send', this.formData).then(({ data }) => {
+                    console.log(data)
+                    debugger
+                })
+            },
+        },
     }
 </script>
 
