@@ -18,14 +18,16 @@
 
         <modal
             v-if="modalId"
-            :id="modalId"/>
+            :id="modalId"
+            @more-details="moreDetails()"
+            @close="modalId = null"/>
     </div>
 </template>
 
 <script>
     import Modal from '@components/Modal'
 
-    import scrollAnimations from '../Scrollbar.js'
+    import ScrollAnimations from '../Scrollbar'
 
     export default {
         components: {
@@ -34,7 +36,7 @@
 
         data() {
             return {
-                scroll: null,
+                scrollBar: null,
                 modalId: null,
             }
         },
@@ -48,24 +50,30 @@
             //     },
             // })
 
-            scrollAnimations({
+            this.scrollBar = new ScrollAnimations({
                 element: '#app',
                 scrollBarOptions: {
                     plugins: {
                         overscroll: true,
                         maxOverscroll: 150,
-                        damping: .2,
+                        damping: 0.2,
                     },
-                }
+                },
             })
 
         },
 
         methods: {
             updateScroll() {
-                console.log('update scroll');
-            }
-        }
+                console.log('update scroll')
+            },
+            moreDetails() {
+                this.modalId = null
+
+                const contactsEl = document.querySelector('.contacts')
+                this.scrollBar.scrollAnimations(contactsEl)
+            },
+        },
     }
 </script>
 

@@ -12,18 +12,6 @@ class ScrollAnimations {
             scrollBarMobileSpeed: 0.3,
         };
 
-        this.publicMethods = {
-            destroy() {
-                Scrollbar.destroy(variables.element);
-            },
-            getScrollBar() {
-                return variables.scrollBar;
-            },
-            update() {
-                Scrollbar.update(variables.element);
-            },
-        }
-
         this.variables = {};
 
         this.classManipulate = {
@@ -66,6 +54,17 @@ class ScrollAnimations {
                 }
             }
         };
+
+        this.init();
+    }
+
+    init() {
+        if (this.data.element !== undefined) {
+            this.setVariables();
+            this.setScrollBar();
+        } else {
+            console.error('Set an element!');
+        }
     }
 
     setVariables() {
@@ -158,15 +157,6 @@ class ScrollAnimations {
         });
     }
 
-    init() {
-        if (this.data.element !== undefined) {
-            this.setVariables();
-            this.setScrollBar();
-        } else {
-            console.error('Set an element!');
-        }
-    }
-
     isMobile() {
         if (
             navigator.userAgent.match(/Android/i) ||
@@ -183,12 +173,19 @@ class ScrollAnimations {
         }
     }
 
+    destroy() {
+        Scrollbar.destroy(this.variables.element);
+    }
+    getScrollBar() {
+        return this.variables.scrollBar;
+    }
+    update() {
+        Scrollbar.update(this.variables.element);
+    }
+    scrollAnimations(element) {
+        this.variables.scrollBar.scrollIntoView(element)
+    }
+
 };
 
-const scrollAnimations = data => {
-    const scrollAnimations = new ScrollAnimations(data);
-    scrollAnimations.init();
-    return scrollAnimations.publicMethods;
-};
-
-export default scrollAnimations;
+export default ScrollAnimations;
