@@ -30,12 +30,14 @@ class AssetApiController extends Controller
             ];
         }
 
-        $data = [
-            'assets' => $assets,
-            'categories' => AssetCategory::all(),
-        ];
+        return $assets;
+    }
 
-        return $data;
+    public function categories()
+    {
+        $categories = AssetCategory::all();
+
+        return $categories;
     }
 
     public function modal(Request $id)

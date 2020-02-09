@@ -17,7 +17,7 @@
             <div class="works__body"
                 data-aos
                 data-aos-id="works-body"
-                data-aos-top-offset="700"
+                data-aos-top-offset="300"
                 data-aos-bottom-offset="-500">
                     <a v-for="image in images" :key="image.id"
                         @click="$emit('open-modal', image.id)"
@@ -39,24 +39,8 @@
             return {
                 filters: [
                     {
-                        id: 1,
+                        id: 0,
                         name: 'all works',
-                    },
-                    {
-                        id: 2,
-                        name: 'sketch',
-                    },
-                    {
-                        id: 3,
-                        name: 'tattoo',
-                    },
-                    {
-                        id: 4,
-                        name: 'art',
-                    },
-                    {
-                        id: 5,
-                        name: 'text me',
                     },
                 ],
                 images: [],
@@ -66,6 +50,7 @@
 
         created() {
             this.getData();
+            this.getFilters();
         },
 
         mounted() {
@@ -96,7 +81,7 @@
                     scale: [1.15, 1],
                     translateX: [() => this.$anime.random(-25, 25), 0],
                     translateY: [() => this.$anime.random(-25, 25), 0],
-                    duration: 700,
+                    duration: 500,
                     easing: 'linear',
                     delay: this.$anime.stagger(400, { grid: [3, 5], from: 0 }),
                 })
@@ -109,7 +94,7 @@
                     opacity: [1, 0],
                     scale: [1, 0.8],
                     duration: 200,
-                    delay: this.$anime.stagger(150, {from: 'last'}),
+                    delay: this.$anime.stagger(150, { from: 'last' }),
                 })
             })
         },
@@ -120,13 +105,38 @@
                     params: {
                         filter_id: filterId,
                     },
-                }).then(({ data: { assets, categories } }) => {
-                    this.images = assets
-                    this.filters = categories
+                }).then(({ data }) => {
+                    this.images = data
+
+                    if (filterId >= 0) {
+                        this.$nextTick(() => {
+                            this.$anime({
+                                targets: '.works__item',
+                                opacity: [0, 1],
+                                scale: [1.15, 1],
+                                translateX: [() => this.$anime.random(-25, 25), 0],
+                                translateY: [() => this.$anime.random(-25, 25), 0],
+                                duration: 300,
+                                easing: 'linear',
+                                delay: this.$anime.stagger(100, { grid: [3, 5], from: 0 }),
+                            })
+                        })
+                    }
+                })
+            },
+            getFilters() {
+                axios.get('/api/v1/categories').then(({ data }) => {
+                    this.filters = [
+                        {
+                            id: 0,
+                            name: 'all works',
+                        },
+                        ...data,
+                    ]
                 })
             },
             filterWorks(selectedFilter) {
-                this.getData(selectedFilter.id)
+                this.getData(selectedFilter.id !== 0 ? selectedFilter.id : null)
 
                 this.filters.forEach((filter) => {
                     this.$set(filter, 'active', filter.id === selectedFilter.id)
@@ -184,8 +194,8 @@
         &__body
             +flex_sb_fs
             flex-wrap: wrap
-            padding-bottom: 70px
-
+            padding-bottom: 100px
+            min-height: 700px
 
         &__item
             width: calc(33.3333% - 70px)
