@@ -4,9 +4,18 @@
             <header class="header">
                 <div class="container">
                     <nav class="header__nav">
-                        <a href="#"><span>about me</span></a>
-                        <a href="#"><span>my works</span></a>
-                        <a href="#"><span>FAQ</span></a>
+                        <a href="#"
+                            @click="scrollBar.scrollIntoView('.bio')">
+                            <span>about me</span>
+                        </a>
+                        <a href="#"
+                            @click="scrollBar.scrollIntoView('.works')">
+                            <span>my works</span>
+                        </a>
+                        <a href="#"
+                            @click="scrollBar.scrollIntoView('.questions')">
+                            <span>FAQ</span>
+                        </a>
                     </nav>
                 </div>
             </header>
@@ -70,8 +79,8 @@
             moreDetails() {
                 this.modalId = null
 
-                const contactsEl = document.querySelector('.contacts')
-                this.scrollBar.scrollAnimations(contactsEl)
+
+                this.scrollBar.scrollIntoView('.contacts')
             },
         },
     }

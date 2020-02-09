@@ -182,7 +182,8 @@ class ScrollAnimations {
     update() {
         Scrollbar.update(this.variables.element);
     }
-    scrollAnimations(element) {
+    scrollIntoView(selector) {
+        const element = document.querySelector(selector)
         this.variables.scrollBar.scrollIntoView(element)
     }
 
