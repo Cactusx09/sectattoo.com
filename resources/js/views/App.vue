@@ -29,7 +29,7 @@
             v-if="modalId"
             :id="modalId"
             @more-details="moreDetails()"
-            @close="modalId = null"/>
+            @close="closeModal({ moreDetails: $event})"/>
     </div>
 </template>
 
@@ -76,11 +76,10 @@
             updateScroll() {
                 console.log('update scroll')
             },
-            moreDetails() {
+            closeModal({ moreDetails } = {}) {
                 this.modalId = null
 
-
-                this.scrollBar.scrollIntoView('.contacts')
+                if (moreDetails) this.scrollBar.scrollIntoView('.contacts')
             },
         },
     }
@@ -98,6 +97,7 @@
         right: 0
         z-index: 3
         background-color: $black
+        user-select: none
 
     .app
         font: 16px 'Century Gothic', Helvetica, Helvetica Neue, Arial
@@ -214,6 +214,9 @@
                 letter-spacing: 0.028rem
                 font-weight: 700
                 line-height: 2.67
+                transition: .3s
+                &:hover
+                    color: $red
                 &:not(:last-of-type)
                     margin-right: 6rem
 </style>

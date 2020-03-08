@@ -10,14 +10,14 @@
                     <a href="#"
                         class="red justify"
                         v-html="wrapWords('for more detail contact me')"
-                        @click.prevent="$emit('more-details')">
+                        @click.prevent="close({ moreDetails: true })">
                     </a>
                 </div>
 
 
                 <div
                     class="close"
-                    @click="$emit('close')">
+                    @click="close()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001">
                         <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0014.143 5.857 19.94 19.94 0 0014.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"/>
                     </svg>
@@ -41,6 +41,7 @@
         data() {
             return {
                 image: {},
+                animeTimeline: null,
             }
         },
 
@@ -55,9 +56,55 @@
                 })
         },
 
+        mounted() {
+            this.animeTimeline = this.$anime.timeline()
+                .add({
+                    targets: '.modal',
+                    scale: [1.05, 1],
+                    easing: 'spring(5, 60, 20, 5)',
+                    opacity: {
+                        value: [0, 1],
+                        easing: 'linear',
+                        duration: 250,
+                    },
+                })
+                .add({
+                    targets: '.image',
+                    scale: [0.9, 1],
+                    easing: 'spring(5, 50, 20, 7)',
+                    duration: 700,
+                }, 200)
+                .add({
+                    targets: '.info h3, .info .red',
+                    scale: [0.95, 1],
+                    opacity: [0, 1],
+                    easing: 'spring(10, 80, 30, 10)',
+                    delay: this.$anime.stagger(300, { from: 'first' }),
+                    duration: 500,
+                }, 300)
+                .add({
+                    targets: '.info p',
+                    opacity: [0, 1],
+                    easing: 'linear',
+                    duration: 600,
+                }, 800)
+                .add({
+                    targets: '.close',
+                    scale: [0.85, 1],
+                    duration: 600,
+                    easing: 'spring(10, 80, 30, 10)',
+                }, 500)
+        },
+
         methods: {
             wrapWords(str, tmpl) {
                 return str.replace(/[\w-',.!:]+/g, tmpl || '<span>$&</span>');
+            },
+            close({ moreDetails } = {}) {
+                this.animeTimeline.reverse()
+                this.animeTimeline.finished.then(() => {
+                    this.$emit('close', moreDetails)
+                })
             },
         },
     }
@@ -114,9 +161,13 @@
     display: flex
     width: 2.1875rem
     cursor: pointer
+    &:hover
+        svg path
+            fill: $red
     svg
         width: 100%
         path
             fill: #fff
+            transition: .5s
 
 </style>

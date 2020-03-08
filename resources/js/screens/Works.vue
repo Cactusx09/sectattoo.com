@@ -20,7 +20,8 @@
                 data-aos-top-offset="300"
                 data-aos-bottom-offset="-500">
                     <a v-for="image in images" :key="image.id"
-                        @click="$emit('open-modal', image.id)"
+                        href="#"
+                        @click.prevent="$emit('open-modal', image.id)"
                         class="works__item"
                         :style="`background-image: url(${image.thumbUrl})`">
                     </a>

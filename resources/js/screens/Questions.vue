@@ -88,14 +88,14 @@
         },
 
         mounted() {
-            document.addEventListener('aos:in:questions-body', ({detail}) => {
+            document.addEventListener('aos:in:questions-body', () => {
                 this.$anime.remove('.questions__names p, .questions__title span, .questions__text')
                 this.$anime({
                     targets: '.questions__names p',
                     opacity: [0, 1],
                     translateX: [-50, 0],
                     duration: 2000,
-                    delay: this.$anime.stagger(50, {from: 'first'}),
+                    delay: this.$anime.stagger(50, { from: 'first' }),
                 })
 
                 this.$anime({
@@ -103,7 +103,7 @@
                     opacity: [0, 1],
                     translateX: [-35, 0],
                     duration: 2000,
-                    delay: this.$anime.stagger(100, {from: 'first'}),
+                    delay: this.$anime.stagger(100, { from: 'first' }),
                 })
 
                 this.$anime({
@@ -113,13 +113,13 @@
                     delay: 2000,
                 })
             })
-            document.addEventListener('aos:out:questions-body', ({detail}) => {
+            document.addEventListener('aos:out:questions-body', () => {
                 this.$anime.remove('.questions__names p, .questions__title span, .questions__text')
                 this.$anime({
                     targets: '.questions__names p',
                     translateX: [0, 50],
                     opacity: [1, 0],
-                    delay: this.$anime.stagger(250, {from: 'first'}),
+                    delay: this.$anime.stagger(250, { from: 'first' }),
                     duration: 2000,
                 })
 
@@ -128,7 +128,7 @@
                     opacity: 0,
                     translateX: [0, 35],
                     duration: 1000,
-                    delay: this.$anime.stagger(100, {from: 'first'}),
+                    delay: this.$anime.stagger(100, { from: 'first' }),
                 })
 
                 this.$anime({
@@ -146,7 +146,7 @@
 
                 this.selectedQuestion = {
                     text: question.text,
-                    index: index,
+                    index,
                 }
                 this.$emit('set-questions')
 
