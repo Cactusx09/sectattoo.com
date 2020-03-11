@@ -295,6 +295,36 @@
             .button
                 margin-top: 2rem
                 opacity: 0
+                >span>span
+                    position: relative
+                    &:before
+                        content: ''
+                        position: absolute
+                        top: 50%
+                        margin-top: 1px
+                        left: -2px
+                        width: 0px
+                        height: 2px
+                        background: $red
+                        transition: .5s
+                        opacity: 0
+                    &:after
+                        content: ''
+                        position: absolute
+                        top: 50%
+                        margin-top: 1px
+                        width: 0px
+                        right: 3.6rem
+                        height: 2px
+                        background: $red
+                        transition: .5s
+                        opacity: 0
+                &:hover
+                    >span>span
+                        &:before,
+                        &:after
+                            opacity: 1
+                            width: 50%
 
             .title
                 margin-bottom: 2rem
@@ -324,6 +354,8 @@
                 letter-spacing: 0.225rem
                 color: $black
                 text-decoration: none
+            a
+                +line_through_hover($black, $weight: 1px)
             &_row
                 +flex_sb_c
                 margin-bottom: 2.5rem

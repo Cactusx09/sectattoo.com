@@ -194,17 +194,22 @@
         &__names
             p
                 opacity: 0
+                +line_through_hover($white, $weight: 1px)
             span
-                display: block
+                display: inline-block
                 cursor: pointer
                 user-select: none
                 font-size: 1.125rem
                 font-weight: 700
                 letter-spacing: 0.028rem
-                margin-bottom: 1.6em
+                margin-bottom: 1.2rem
                 color: rgba(#ffffff, .4)
                 &._active
                     color: #ffffff
+                    cursor: default
+                    &:before,
+                    &:after
+                        opacity: 0 !important
 
         &__text
             color: #ffffff

@@ -181,10 +181,11 @@
                 color: $black
                 text-decoration: none
                 position: relative
-                transition: .5s
+                transition: .3s
                 opacity: 0
                 &:hover
                     color: $red
+                // +line_through_hover($red, $weight: 1px)
                 svg
                     position: absolute
                     top: 5px

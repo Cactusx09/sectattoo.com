@@ -5,16 +5,16 @@
                 <div class="container">
                     <nav class="header__nav">
                         <a href="#"
-                            @click="scrollBar.scrollIntoView('.bio')">
+                            @click.prevent="scrollBar.scrollIntoView('.bio')">
                             <span>about me</span>
                         </a>
                         <a href="#"
-                            @click="scrollBar.scrollIntoView('.works')">
+                            @click.prevent="scrollBar.scrollIntoView('.works')">
                             <span>my works</span>
                         </a>
                         <a href="#"
-                            @click="scrollBar.scrollIntoView('.questions')">
-                            <span>FAQ</span>
+                            @click.prevent="scrollBar.scrollIntoView('.questions')">
+                            <span>faq</span>
                         </a>
                     </nav>
                 </div>
@@ -89,7 +89,7 @@
     @import '/fonts/fonts.css'
     @import 'resources/sass/web/reset.sass'
 
-    body,.wraper
+    body, .wraper
         position: fixed
         left: 0
         top: 0
@@ -213,10 +213,9 @@
                 text-decoration: none
                 letter-spacing: 0.028rem
                 font-weight: 700
-                line-height: 2.67
                 transition: .3s
-                &:hover
-                    color: $red
+                +line_through_hover($red, $weight: 1px)
+
                 &:not(:last-of-type)
                     margin-right: 6rem
 </style>
