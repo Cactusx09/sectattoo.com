@@ -131,7 +131,7 @@
         },
 
         mounted() {
-            document.addEventListener('aos:in:contacts-form', ({detail}) => {
+            document.addEventListener('aos:in:contacts-form', () => {
                 this.$anime.remove('.contacts__form .field, .contacts__form .red span, .contacts__form .button')
                 this.$anime.timeline()
                     .add({
@@ -139,7 +139,7 @@
                         opacity: [0, 1],
                         translateX: [-35, 0],
                         duration: 2000,
-                        delay: this.$anime.stagger(150, {from: 'first'}),
+                        delay: this.$anime.stagger(150, { from: 'first' }),
                     })
                     .add({
                         targets: '.contacts__form .field, .contacts__form .button',
@@ -149,7 +149,7 @@
                         delay: (el, i, l) => i * 200,
                     }, 500)
             })
-            document.addEventListener('aos:out:contacts-form', ({detail}) => {
+            document.addEventListener('aos:out:contacts-form', () => {
                 this.$anime.remove('.contacts__form .field, .contacts__form .red span, .contacts__form .button')
                 this.$anime.timeline()
                     .add({
@@ -164,13 +164,13 @@
                         opacity: 0,
                         translateX: 35,
                         duration: 1000,
-                        delay: this.$anime.stagger(150, {from: 'last'}),
+                        delay: this.$anime.stagger(150, { from: 'last' }),
                     }, 500)
             })
 
 
 
-            document.addEventListener('aos:in:contacts-info', ({detail}) => {
+            document.addEventListener('aos:in:contacts-info', () => {
                 this.$anime.remove('.contacts__info_red')
                 this.$anime({
                     targets: '.contacts__info_red',
@@ -179,7 +179,7 @@
                     duration: 2000,
                 })
             })
-            document.addEventListener('aos:out:contacts-info', ({detail}) => {
+            document.addEventListener('aos:out:contacts-info', () => {
                 this.$anime.remove('.contacts__info_red')
                 this.$anime({
                     targets: '.contacts__info_red',
@@ -191,7 +191,7 @@
 
 
 
-            document.addEventListener('aos:in:contacts-imgs', ({detail}) => {
+            document.addEventListener('aos:in:contacts-imgs', () => {
                 this.$anime.remove('.contacts__imgs_img')
                 this.$anime({
                     targets: '.contacts__imgs_img',
@@ -200,7 +200,7 @@
                     delay: this.$anime.stagger(100, {from: 'first'}),
                 })
             })
-            document.addEventListener('aos:out:contacts-imgs', ({detail}) => {
+            document.addEventListener('aos:out:contacts-imgs', () => {
                 this.$anime.remove('.contacts__imgs_img')
                 this.$anime({
                     targets: '.contacts__imgs_img',
@@ -222,32 +222,35 @@
                 this.$anime({
                     targets: `.label_${fieldName} span`,
                     translateY: 25,
-                    duration: 1000,
-                    scale: .7,
+                    duration: 100,
+                    scale: 0.7,
                     letterSpacing: '.2rem',
                     color: '#cb1515',
-                    delay: this.$anime.stagger(150, {from: 'first'}),
+                    easing: 'linear',
+                    delay: this.$anime.stagger(70, { from: 'first' }),
                 })
             },
             blurFieldAnime(fieldName) {
                 this.$anime.remove(`.label_${fieldName} span`)
 
-                if(this.formData[fieldName]) {
+                if (this.formData[fieldName]) {
                     this.$anime({
                         targets: `.label_${fieldName} span`,
                         color: '#626262',
-                        duration: 2000,
-                        delay: this.$anime.stagger(50, {from: 'last'}),
+                        duration: 200,
+                        easing: 'linear',
+                        delay: this.$anime.stagger(50, { from: 'last' }),
                     })
                 } else {
                     this.$anime({
                         targets: `.label_${fieldName} span`,
                         translateY: 0,
-                        duration: 1000,
+                        duration: 200,
                         scale: 1,
                         letterSpacing: '.7rem',
+                        easing: 'linear',
                         color: '#626262',
-                        delay: this.$anime.stagger(150, {from: 'last'}),
+                        delay: this.$anime.stagger(50, { from: 'last' }),
                     })
                 }
             },
