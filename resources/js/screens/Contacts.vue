@@ -7,41 +7,26 @@
                         data-aos-id="contacts-form"
                         data-aos-top-offset="450"
                         data-aos-bottom-offset="-500"
+                        autocomplete="off"
                         class="contacts__form">
                         <p class="red justify title" v-html="wrapWords(text.top)"></p>
                         <div class="field">
-                            <label class="label label_name">
-                                <span>n</span>
-                                <span>a</span>
-                                <span>m</span>
-                                <span>e</span>
-                            </label>
+                            <label class="label label_name" v-html="wrapWords('n a m e')"></label>
                             <input v-model="formData.name"
                                 class="input" type="text" name="name"
                                 @focus="focusFieldAnime('name')"
                                 @blur="blurFieldAnime('name')"/>
                         </div>
                         <div class="field">
-                            <label class="label label_mail">
-                                <span>e</span>
-                                <span>-</span>
-                                <span>m</span>
-                                <span>a</span>
-                                <span>i</span>
-                                <span>l</span>
-                            </label>
+                            <label class="label label_mail" v-html="wrapWords('e - m a i l')"></label>
                             <input v-model="formData.mail"
+                                autocomplete="off"
                                 class="input" type="text" name="mail"
                                 @focus="focusFieldAnime('mail')"
                                 @blur="blurFieldAnime('mail')"/>
                         </div>
                         <div class="field">
-                            <label class="label label_message">
-                                <span>t</span>
-                                <span>e</span>
-                                <span>x</span>
-                                <span>t</span>
-                            </label>
+                            <label class="label label_message" v-html="wrapWords('t e x t')"></label>
                             <textarea
                                 v-model="formData.message"
                                 class="textarea" name="message"
@@ -54,6 +39,15 @@
                             @click.prevent="send()">
                             <span><span>send</span></span>
                         </button>
+
+                        <div class="sending" v-html="wrapWords('s e n d i n g ...')"></div>
+                        <div class="sent">
+                            <span>s</span>
+                            <span>e</span>
+                            <span>n</span>
+                            <span>t</span>
+                            <span>✓</span>
+                        </div>
                     </form>
 
                     <div class="contacts__info">
@@ -255,9 +249,49 @@
                 }
             },
             send() {
+                this.$anime({
+                    targets: '.sending span',
+                    translateX: [-25, 0],
+                    duration: 200,
+                    opacity: [0, 1],
+                    color: '#cb1515',
+                    easing: 'linear',
+                    loop: true,
+                    delay: this.$anime.stagger(100, { from: 'first' }),
+                })
+
                 axios.post('/api/v1/send', this.formData).then(({ data }) => {
-                    console.log(data)
-                    debugger
+                    this.$anime.remove('.sending span')
+                    this.$anime.timeline()
+                        .add({
+                            targets: '.sending span',
+                            translateX: [0, -25],
+                            duration: 100,
+                            opacity: 0,
+                            color: '#fff',
+                            easing: 'linear',
+                            delay: this.$anime.stagger(100, { from: 'first' }),
+                        })
+                        .add({
+                            targets: '.sent',
+                            opacity: 1,
+                            duration: 500,
+                        }, 200)
+                        .add({
+                            targets: '.sent span',
+                            translateX: [-25, 0],
+                            duration: 300,
+                            opacity: [0, 1],
+                            color: '#fff',
+                            easing: 'linear',
+                            delay: this.$anime.stagger(150, { from: 'first' }),
+                        }, 300)
+                        .add({
+                            targets: '.sent',
+                            opacity: 0,
+                            duration: 500,
+                            delay: 1300,
+                        })
                 })
             },
         },
@@ -284,7 +318,9 @@
             width: 100%
             box-sizing: border-box
             max-width: 520px
-            padding: 3.125rem 0 9rem
+            padding-top: 3.125rem
+            margin-bottom: 9rem
+            position: relative
             .field
                 margin-bottom: 1rem
                 opacity: 0
@@ -332,6 +368,14 @@
             .title
                 margin-bottom: 2rem
                 font-size: 1.5rem
+                span
+                    opacity: 0
+            .sending,
+            .sent
+                position: absolute
+                left: 0
+                bottom: -50px
+                letter-spacing: .2rem
                 span
                     opacity: 0
 
