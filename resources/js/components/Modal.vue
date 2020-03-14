@@ -2,7 +2,10 @@
     <div class="modal">
         <div class="container">
             <div class="body">
-                <div class="image" :style="`background-image: url(${image.thumbUrl})`"></div>
+                <div class="image">
+                    <div class="image__img" :style="`background-image: url(${image.thumbUrl})`"></div>
+                    <div class="image__bg"></div>
+                </div>
                 <div class="info">
                     <h3>{{ image.name }}</h3>
                     <p>{{ image.notes }}</p>
@@ -12,6 +15,7 @@
                         v-html="wrapWords('for more detail contact me')"
                         @click.prevent="close({ moreDetails: true })">
                     </a>
+                    <div class="info__bg"></div>
                 </div>
 
 
@@ -41,7 +45,6 @@
         data() {
             return {
                 image: {},
-                animeTimeline: null,
             }
         },
 
@@ -57,43 +60,48 @@
         },
 
         mounted() {
-            this.animeTimeline = this.$anime.timeline()
+            const viewPortHeight = document.documentElement.clientHeight;
+            const viewPortWidth = document.documentElement.clientWidth;
+
+            this.$anime.timeline()
                 .add({
                     targets: '.modal',
                     scale: [1.05, 1],
-                    easing: 'spring(5, 60, 20, 5)',
-                    opacity: {
-                        value: [0, 1],
-                        easing: 'linear',
-                        duration: 250,
-                    },
+                    opacity: [0, 1],
                 })
                 .add({
-                    targets: '.image',
-                    scale: [0.9, 1],
-                    easing: 'spring(5, 50, 20, 7)',
-                    duration: 700,
+                    targets: '.image__bg',
+                    translateX: [-viewPortWidth, 0],
+                    duration: 1400,
                 }, 200)
                 .add({
-                    targets: '.info h3, .info .red',
-                    scale: [0.95, 1],
-                    opacity: [0, 1],
-                    easing: 'spring(10, 80, 30, 10)',
-                    delay: this.$anime.stagger(300, { from: 'first' }),
-                    duration: 500,
-                }, 300)
-                .add({
-                    targets: '.info p',
-                    opacity: [0, 1],
+                    targets: '.info__bg',
+                    translateY: [-viewPortHeight - 200, 0],
                     easing: 'linear',
-                    duration: 600,
+                    duration: 500,
                 }, 800)
+                .add({
+                    targets: '.image__img',
+                    scale: [0.97, 1],
+                    opacity: [0, 1],
+                    easing: 'spring(5, 50, 20, 7)',
+                    duration: 500,
+                }, 1300)
+                .add({
+                    targets: '.info h3, .info p, .info .red',
+                    translateY: [-20, 0],
+                    opacity: [0, 1],
+                    delay: this.$anime.stagger(300, { from: 'first' }),
+                    easing: 'spring(5, 50, 20, 7)',
+                    duration: 500,
+                }, 1400)
                 .add({
                     targets: '.close',
                     scale: [0.85, 1],
-                    duration: 600,
+                    opacity: [0, 1],
+                    duration: 400,
                     easing: 'spring(10, 80, 30, 10)',
-                }, 500)
+                }, 1600)
         },
 
         methods: {
@@ -101,10 +109,52 @@
                 return str.replace(/[\w-',.!:]+/g, tmpl || '<span>$&</span>');
             },
             close({ moreDetails } = {}) {
-                this.animeTimeline.reverse()
-                this.animeTimeline.finished.then(() => {
-                    this.$emit('close', moreDetails)
-                })
+                const viewPortHeight = document.documentElement.clientHeight;
+                const viewPortWidth = document.documentElement.clientWidth;
+
+                this.$anime.remove('.image__img, .info h3, .info p, .info .red, .close, .modal, .info__bg, .image__bg')
+
+                this.$anime.timeline()
+                    .add({
+                        targets: '.close',
+                        scale: [1, 0.85],
+                        opacity: [1, 0],
+                        duration: 600,
+                        easing: 'spring(10, 80, 30, 10)',
+                    }, 0)
+                    .add({
+                        targets: '.info h3, .info p, .info .red',
+                        translateY: [0, 40],
+                        opacity: 0,
+                        easing: 'spring(5, 80, 30, 7)',
+                        delay: this.$anime.stagger(200, { from: 'first' }),
+                        duration: 700,
+                    }, 100)
+                    .add({
+                        targets: '.image__img',
+                        scale: [1, 0.85],
+                        opacity: 0,
+                        easing: 'spring(5, 50, 20, 7)',
+                        duration: 700,
+                    }, 500)
+                    .add({
+                        targets: '.info__bg',
+                        translateY: [0, viewPortHeight + 200],
+                        easing: 'spring(5, 50, 20, 7)',
+                        duration: 600,
+                    }, 1000)
+                    .add({
+                        targets: '.image__bg',
+                        translateX: [0, -viewPortWidth],
+                        duration: 1100,
+                    }, 1500)
+                    .add({
+                        targets: '.modal',
+                        scale: [1, 1.05],
+                        opacity: 0,
+                        duration: 450,
+                        complete: () => this.$emit('close', moreDetails),
+                    }, 1600)
             },
         },
     }
@@ -117,9 +167,10 @@
     top: 0
     width: 100%
     height: 100%
-    background: black
     z-index: 999
+    // background: $black
     +flex_fs_s
+
 .container
     height: 100%
     +flex_fs_s
@@ -131,14 +182,40 @@
 .image
     max-width: calc(100% - 375px)
     width: 100%
-    background-size: cover
-    background-position: center
-    background-repeat: no-repeat
+    position: relative
+    &__img
+        background-size: cover
+        background-position: center
+        background-repeat: no-repeat
+        width: 100%
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        z-index: 2
+    &__bg
+        position: absolute
+        width: 9999px
+        height: calc(100% + 8rem)
+        background: #161616
+        right: -3rem
+        top: -4rem
+        z-index: -1
 .info
     width: 300px
     padding-top: 4rem
     +flex_sb_s
     flex-direction: column
+    position: relative
+    &__bg
+        position: absolute
+        width: 9999px
+        height: calc(100% + 8rem)
+        background: #212121
+        left: -2.2rem
+        top: -4rem
+        z-index: -1
+
     h3
         color: #ffffff
         font-size: 1.5rem

@@ -214,7 +214,7 @@
                 letter-spacing: 0.028rem
                 font-weight: 700
                 transition: .3s
-                +line_through_hover($red, $weight: 1px)
+                +line_through_hover($white, $weight: 1px)
 
                 &:not(:last-of-type)
                     margin-right: 6rem
