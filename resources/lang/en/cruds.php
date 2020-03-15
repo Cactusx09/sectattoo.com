@@ -85,6 +85,28 @@ return [
             'deleted_at_helper' => '',
         ],
     ],
+    'textManagement' => [
+        'title'          => 'Texts management',
+        'title_singular' => 'Text management',
+    ],
+    'question'   => [
+        'title'          => 'Questions',
+        'title_singular' => 'Question',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'title'              => 'Question title',
+            'title_helper'       => '',
+            'text'              => 'Text',
+            'text_helper'       => '',
+            'created_at'        => 'Created at',
+            'created_at_helper' => '',
+            'updated_at'        => 'Updated At',
+            'updated_at_helper' => '',
+            'deleted_at'        => 'Deleted At',
+            'deleted_at_helper' => '',
+        ],
+    ],
     'asset'           => [
         'title'          => 'Assets',
         'title_singular' => 'Asset',

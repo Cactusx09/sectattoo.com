@@ -7,12 +7,13 @@ class PermissionsTableSeeder extends Seeder
 {
     public function run()
     {
-        $permissions = [[
-            'id'         => '1',
-            'title'      => 'user_management_access',
-            'created_at' => '2019-09-03 12:55:56',
-            'updated_at' => '2019-09-03 12:55:56',
-        ],
+        $permissions = [
+            [
+                'id'         => '1',
+                'title'      => 'user_management_access',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
             [
                 'id'         => '2',
                 'title'      => 'permission_create',
@@ -174,7 +175,44 @@ class PermissionsTableSeeder extends Seeder
                 'title'      => 'assets_history_access',
                 'created_at' => '2019-09-03 12:55:56',
                 'updated_at' => '2019-09-03 12:55:56',
-            ]];
+            ],
+            [
+                'id'         => '39',
+                'title'      => 'text_management_access',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
+            [
+                'id'         => '40',
+                'title'      => 'question_create',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
+            [
+                'id'         => '41',
+                'title'      => 'question_edit',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
+            [
+                'id'         => '42',
+                'title'      => 'question_show',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
+            [
+                'id'         => '43',
+                'title'      => 'question_delete',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
+            [
+                'id'         => '44',
+                'title'      => 'question_access',
+                'created_at' => '2019-09-03 12:55:56',
+                'updated_at' => '2019-09-03 12:55:56',
+            ],
+        ];
 
         Permission::insert($permissions);
     }

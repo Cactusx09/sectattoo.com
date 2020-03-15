@@ -28,6 +28,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('assets/media', 'AssetController@storeMedia')->name('assets.storeMedia');
     Route::resource('assets', 'AssetController');
 
+    // Questions
+    Route::delete('questions/destroy', 'QuestionController@massDestroy')->name('questions.massDestroy');
+    Route::resource('questions', 'QuestionController');
+
     // Assetshistories
     Route::resource('assets-histories', 'AssetsHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 });
