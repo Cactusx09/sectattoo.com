@@ -72,7 +72,8 @@
                 .add({
                     targets: '.image__bg',
                     translateX: [-viewPortWidth, 0],
-                    duration: 1400,
+                    easing: 'easeOutCubic',
+                    duration: 1000,
                 }, 200)
                 .add({
                     targets: '.info__bg',
@@ -146,7 +147,8 @@
                     .add({
                         targets: '.image__bg',
                         translateX: [0, -viewPortWidth],
-                        duration: 1100,
+                        duration: 1300,
+                        easing: 'easeOutCubic',
                     }, 1500)
                     .add({
                         targets: '.modal',

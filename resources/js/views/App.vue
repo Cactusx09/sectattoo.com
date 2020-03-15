@@ -98,6 +98,8 @@
         z-index: 3
         background-color: $black
         user-select: none
+    .scroll-content
+        overflow-x: hidden
 
     .app
         font: 16px 'Century Gothic', Helvetica, Helvetica Neue, Arial

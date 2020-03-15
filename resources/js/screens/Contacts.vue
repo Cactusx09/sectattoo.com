@@ -386,10 +386,10 @@
             padding: 3.125rem 0
             max-width: 520px
             &_red
-                left: -9999px
+                left: -1999px
                 bottom: 0
                 height: 100%
-                width: calc(9999px + 100% + 1999px)
+                width: calc(1999px + 100% + 1299px)
                 position: absolute
                 background: $red
                 z-index: -1

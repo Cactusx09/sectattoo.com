@@ -112,6 +112,8 @@ class ScrollAnimations {
             this.variables.element,
             this.variables.scrollBarOptions
         );
+        this.variables.scrollBar.track.xAxis.element.remove();
+
         let position = 0,
             direction,
             isVisible;
