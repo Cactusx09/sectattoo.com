@@ -24,5 +24,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
     Route::get('categories', 'AssetApiController@categories');
     Route::get('works/modal', 'AssetApiController@modal');
 
+    Route::get('questions', 'QuestionApiController@index');
+
     Route::post('send', 'AssetApiController@send');
 });

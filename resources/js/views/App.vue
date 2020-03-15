@@ -74,7 +74,7 @@
 
         methods: {
             updateScroll() {
-                console.log('update scroll')
+                this.scrollBar.variables.scrollBar.update();
             },
             closeModal({ moreDetails } = {}) {
                 this.modalId = null
