@@ -122,8 +122,8 @@ return [
         ],
     ],
     'asset'           => [
-        'title'          => 'Assets',
-        'title_singular' => 'Asset',
+        'title'          => 'Works',
+        'title_singular' => 'Work',
         'fields'         => [
             'id'                   => 'ID',
             'id_helper'            => '',
@@ -146,12 +146,12 @@ return [
         ],
     ],
     'assetsHistory'   => [
-        'title'          => 'Assets History',
-        'title_singular' => 'Assets History',
+        'title'          => 'Works History',
+        'title_singular' => 'Work History',
         'fields'         => [
             'id'                   => 'ID',
             'id_helper'            => '',
-            'asset'                => 'Asset',
+            'asset'                => 'Work',
             'asset_helper'         => '',
             'status'               => 'Status',
             'status_helper'        => '',

@@ -21,7 +21,19 @@
                         </p>
                     </a>
                 </li>
-                @can('text_management_access')
+                @can('question_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.questions.index") }}" class="nav-link {{ request()->is('admin/questions') || request()->is('admin/questions/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-question">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('cruds.question.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                <!-- @can('text_management_access')
                     <li class="nav-item has-treeview {{ request()->is('admin/questions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw fas fa-file-alt">
@@ -33,14 +45,54 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            @can('question_access')
+
+                        </ul>
+                    </li>
+                @endcan -->
+                @can('asset_management_access')
+                    <li class="nav-item has-treeview {{ request()->is('admin/assets*') ? 'menu-open' : '' }} {{ request()->is('admin/asset-categories*') ? 'menu-open' : '' }} {{ request()->is('admin/assets-histories*') ? 'menu-open' : '' }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw fas fa-book">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('cruds.assetManagement.title') }}</span>
+                                <i class="right fa fa-fw fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('asset_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.questions.index") }}" class="nav-link {{ request()->is('admin/questions') || request()->is('admin/questions/*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-question">
+                                    <a href="{{ route("admin.asset-categories.index") }}" class="nav-link {{ request()->is('admin/asset-categories') || request()->is('admin/asset-categories/*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-tags">
 
                                         </i>
                                         <p>
-                                            <span>{{ trans('cruds.question.title') }}</span>
+                                            <span>{{ trans('cruds.assetCategory.title') }}</span>
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('asset_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.assets.index") }}" class="nav-link {{ request()->is('admin/assets') || request()->is('admin/assets/*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-book">
+
+                                        </i>
+                                        <p>
+                                            <span>{{ trans('cruds.asset.title') }}</span>
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('assets_history_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.assets-histories.index") }}" class="nav-link {{ request()->is('admin/assets-histories') || request()->is('admin/assets-histories/*') ? 'active' : '' }}">
+                                        <i class="fa-fw fas fa-th-list">
+
+                                        </i>
+                                        <p>
+                                            <span>{{ trans('cruds.assetsHistory.title') }}</span>
                                         </p>
                                     </a>
                                 </li>
@@ -92,57 +144,6 @@
                                         </i>
                                         <p>
                                             <span>{{ trans('cruds.user.title') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan
-                @can('asset_management_access')
-                    <li class="nav-item has-treeview {{ request()->is('admin/asset-categories*') ? 'menu-open' : '' }} {{ request()->is('admin/assets-histories*') ? 'menu-open' : '' }}">
-                        <a class="nav-link nav-dropdown-toggle" href="#">
-                            <i class="fa-fw fas fa-book">
-
-                            </i>
-                            <p>
-                                <span>{{ trans('cruds.assetManagement.title') }}</span>
-                                <i class="right fa fa-fw fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('asset_category_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.asset-categories.index") }}" class="nav-link {{ request()->is('admin/asset-categories') || request()->is('admin/asset-categories/*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-tags">
-
-                                        </i>
-                                        <p>
-                                            <span>{{ trans('cruds.assetCategory.title') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('asset_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.assets.index") }}" class="nav-link {{ request()->is('admin/assets') || request()->is('admin/assets/*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-book">
-
-                                        </i>
-                                        <p>
-                                            <span>{{ trans('cruds.asset.title') }}</span>
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('assets_history_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.assets-histories.index") }}" class="nav-link {{ request()->is('admin/assets-histories') || request()->is('admin/assets-histories/*') ? 'active' : '' }}">
-                                        <i class="fa-fw fas fa-th-list">
-
-                                        </i>
-                                        <p>
-                                            <span>{{ trans('cruds.assetsHistory.title') }}</span>
                                         </p>
                                     </a>
                                 </li>
