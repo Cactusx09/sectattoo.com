@@ -2,17 +2,19 @@
     <div>
         <main-screen/>
 
-        <bio/>
+        <bio v-if="bio" :bio="bio"/>
 
         <works v-on="$listeners"/>
 
-        <contacts/>
+        <contacts v-if="texts" :texts="texts"/>
 
         <questions @set-questions="$emit('set-questions')"/>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+
     import MainScreen from '@screens/Main'
     import Bio from '@screens/Bio'
     import Works from '@screens/Works'
@@ -26,6 +28,23 @@
             Works,
             Contacts,
             Questions,
+        },
+
+        data() {
+            return {
+                bio: null,
+                texts: null,
+            }
+        },
+
+        created() {
+            axios.get('/api/v1/texts')
+                .then(({ data }) => {
+                    this.texts = data
+                    this.bio = data.bio.value
+
+                    this.$emit('loaded');
+                })
         },
     }
 </script>

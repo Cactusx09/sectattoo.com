@@ -32,22 +32,24 @@
 
 <script>
     export default {
+        props: {
+            bio: {
+                type: String,
+            },
+        },
+
         data() {
             return {
                 text: {
                     top: 'H e l l o !',
-                    paragraphs: [
-                        'I\'m a self-taught artist based in Toronto, Canada. Whatever I\'m ready to share with  you, i will upload here, on this website.',
-                        'I constantly watch and take in the nature around us, that\'s why I believe the most beautiful has already been created by nature. I only depict what comes to my consciousness and, as if through the prism of my perception and individual experience, pour out onto the canvas.',
-                        '3 years ago I started transforming human skin in to ark. I see tattoos as a language that we use to say something in our own personal way. Doing tattoos, my goal is to help people express themselves and create their own',
-                    ],
+                    paragraphs: this.bio.split('\n'),
                     bottom: 's t y l e .',
-                }
+                },
             }
         },
 
         mounted() {
-            document.addEventListener('aos:in:bio-text', ({detail}) => {
+            document.addEventListener('aos:in:bio-text', () => {
                 this.$anime.remove('.bio__text p')
 
                 this.$anime({
@@ -56,7 +58,7 @@
                     translateZ: 0,
                     opacity: [0, 1],
                     easing: 'spring(10, 80, 30, 10)',
-                    delay: this.$anime.stagger(250, {from: 'first'}),
+                    delay: this.$anime.stagger(250, { from: 'first' }),
                 })
 
                 this.$anime({
@@ -69,11 +71,11 @@
                     ],
                     easing: 'linear',
                     duration: 2000,
-                    delay: this.$anime.stagger(150, {from: 'first'}),
+                    delay: this.$anime.stagger(150, { from: 'first' }),
                 })
             })
 
-            document.addEventListener('aos:out:bio-text', ({detail}) => {
+            document.addEventListener('aos:out:bio-text', () => {
                 this.$anime.remove('.bio__text p')
 
                 this.$anime({
@@ -82,7 +84,7 @@
                     translateZ: 0,
                     opacity: 0,
                     duration: 1500,
-                    delay: this.$anime.stagger(200, {from: 'last'}),
+                    delay: this.$anime.stagger(200, { from: 'last' }),
                 })
             })
         },

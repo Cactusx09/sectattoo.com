@@ -53,19 +53,19 @@
                     <div class="contacts__info">
                         <div class="contacts__info_row">
                             <label>phone</label>
-                            <a href="#"><span>154854654</span></a>
+                            <a href="#"><span>{{ texts.phone.value }}</span></a>
                         </div>
                         <div class="contacts__info_row">
                             <label>mail</label>
-                            <a href="mailto:secttatto2@icloud.com"><span>secttattoo2@icloud.com</span></a>
+                            <a :href="`mailto:${texts.mail.value}`"><span>{{ texts.mail.value }}</span></a>
                         </div>
                         <div data-aos
                             data-aos-id="contacts-info"
                             data-aos-top-offset="190"
                             data-aos-bottom-offset="200"
                             class="contacts__info_social">
-                            <a href="#" target="_blank"><span>instagram</span></a>
-                            <a href="#" target="_blank"><span>facebook</span></a>
+                            <a :href="texts.instagram.value" target="_blank"><span>instagram</span></a>
+                            <a :href="texts.facebook.value" target="_blank"><span>facebook</span></a>
                         </div>
 
                         <div class="contacts__info_red"></div>
@@ -111,6 +111,12 @@
     import axios from 'axios'
 
     export default {
+        props: {
+            texts: {
+                type: Object,
+            },
+        },
+
         data() {
             return {
                 text: {

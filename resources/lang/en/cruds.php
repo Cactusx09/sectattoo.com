@@ -107,6 +107,20 @@ return [
             'deleted_at_helper' => '',
         ],
     ],
+    'texts'   => [
+        'fields'         => [
+            'bio'              => 'Bio text',
+            'bio_helper'       => '',
+            'phone'              => 'Phone number',
+            'phone_helper'       => '',
+            'mail'              => 'E-mail',
+            'mail_helper'       => '',
+            'instagram'              => 'Instagram link',
+            'instagram_helper'       => '',
+            'facebook'              => 'Facebook link',
+            'facebook_helper'       => '',
+        ],
+    ],
     'asset'           => [
         'title'          => 'Assets',
         'title_singular' => 'Asset',

@@ -21,7 +21,8 @@
             </header>
             <router-view
                 @open-modal="modalId = $event"
-                @set-questions="updateScroll()">
+                @set-questions="updateScroll()"
+                @loaded="updateScroll()">
             </router-view>
         </div>
 
@@ -49,32 +50,43 @@
                 modalId: null,
             }
         },
-        mounted() {
-            // Scrollbar.use(OverscrollPlugin);
-            // Scrollbar.init(document.querySelector('#app'), {
-            //     plugins: {
-            //         overscroll: true,
-            //         maxOverscroll: 150,
-            //         damping: .2,
-            //     },
-            // })
+        // mounted() {
+        //     // Scrollbar.use(OverscrollPlugin);
+        //     // Scrollbar.init(document.querySelector('#app'), {
+        //     //     plugins: {
+        //     //         overscroll: true,
+        //     //         maxOverscroll: 150,
+        //     //         damping: .2,
+        //     //     },
+        //     // })
 
-            this.scrollBar = new ScrollAnimations({
-                element: '#app',
-                scrollBarOptions: {
-                    plugins: {
-                        overscroll: true,
-                        maxOverscroll: 150,
-                        damping: 0.2,
-                    },
-                },
-            })
+        //     this.scrollBar = new ScrollAnimations({
+        //         element: '#app',
+        //         scrollBarOptions: {
+        //             plugins: {
+        //                 overscroll: true,
+        //                 maxOverscroll: 150,
+        //                 damping: 0.2,
+        //             },
+        //         },
+        //     })
 
-        },
+        // },
 
         methods: {
             updateScroll() {
-                this.scrollBar.variables.scrollBar.update();
+                this.$nextTick(() => {
+                    this.scrollBar = new ScrollAnimations({
+                        element: '#app',
+                        scrollBarOptions: {
+                            plugins: {
+                                overscroll: true,
+                                maxOverscroll: 150,
+                                damping: 0.2,
+                            },
+                        },
+                    })
+                })
             },
             closeModal({ moreDetails } = {}) {
                 this.modalId = null
