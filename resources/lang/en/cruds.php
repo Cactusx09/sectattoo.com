@@ -66,8 +66,8 @@ return [
         ],
     ],
     'assetManagement' => [
-        'title'          => 'Asset management',
-        'title_singular' => 'Asset management',
+        'title'          => 'Works management',
+        'title_singular' => 'Work management',
     ],
     'assetCategory'   => [
         'title'          => 'Categories',
