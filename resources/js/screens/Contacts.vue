@@ -10,14 +10,14 @@
                         autocomplete="off"
                         class="contacts__form">
                         <p class="red justify title" v-html="wrapWords(text.top)"></p>
-                        <div class="field">
+                        <div :class="['field', { '_has_error': errors.name && !formData.name }]">
                             <label class="label label_name" v-html="wrapWords('n a m e')"></label>
                             <input v-model="formData.name"
                                 class="input" type="text" name="name"
                                 @focus="focusFieldAnime('name')"
                                 @blur="blurFieldAnime('name')"/>
                         </div>
-                        <div class="field">
+                        <div :class="['field', { '_has_error': errors.mail && !formData.mail }]">
                             <label class="label label_mail" v-html="wrapWords('e - m a i l')"></label>
                             <input v-model="formData.mail"
                                 autocomplete="off"
@@ -25,7 +25,7 @@
                                 @focus="focusFieldAnime('mail')"
                                 @blur="blurFieldAnime('mail')"/>
                         </div>
-                        <div class="field">
+                        <div :class="['field', { '_has_error': errors.message && !formData.message }]">
                             <label class="label label_message" v-html="wrapWords('t e x t')"></label>
                             <textarea
                                 v-model="formData.message"
@@ -36,7 +36,7 @@
 
                         <button
                             class="button"
-                            @click.prevent="send()">
+                            @click.prevent="validate()">
                             <span><span>send</span></span>
                         </button>
 
@@ -127,6 +127,7 @@
                     mail: null,
                     message: null,
                 },
+                errors: {},
             }
         },
 
@@ -146,7 +147,7 @@
                         translateY: [-30, 0],
                         opacity: [0, 1],
                         duration: 3000,
-                        delay: (el, i, l) => i * 200,
+                        delay: (el, i) => i * 200,
                     }, 500)
             })
             document.addEventListener('aos:out:contacts-form', () => {
@@ -167,7 +168,6 @@
                         delay: this.$anime.stagger(150, { from: 'last' }),
                     }, 500)
             })
-
 
 
             document.addEventListener('aos:in:contacts-info', () => {
@@ -197,7 +197,7 @@
                     targets: '.contacts__imgs_img',
                     opacity: [0, 1],
                     duration: 5000,
-                    delay: this.$anime.stagger(100, {from: 'first'}),
+                    delay: this.$anime.stagger(100, { from: 'first' }),
                 })
             })
             document.addEventListener('aos:out:contacts-imgs', () => {
@@ -206,7 +206,7 @@
                     targets: '.contacts__imgs_img',
                     opacity: 0,
                     duration: 3000,
-                    delay: this.$anime.stagger(120, {from: 'center'}),
+                    delay: this.$anime.stagger(120, { from: 'center' }),
                 })
             })
         },
@@ -254,6 +254,15 @@
                     })
                 }
             },
+            validate() {
+                let hasErrors = false;
+                Object.entries(this.formData).forEach(([key, value]) => {
+                    if (!value) hasErrors = true
+                    this.$set(this.errors, key, !value)
+                })
+
+                if (!hasErrors) this.send()
+            },
             send() {
                 this.$anime({
                     targets: '.sending span',
@@ -297,7 +306,17 @@
                             opacity: 0,
                             duration: 500,
                             delay: 1300,
+                            complete: () => {
+                                this.reset()
+                            },
                         })
+                })
+            },
+            reset() {
+                Object.keys(this.formData).forEach((key) => {
+                    this.formData[key] = null
+                    this.errors[key] = false
+                    this.blurFieldAnime(key);
                 })
             },
         },

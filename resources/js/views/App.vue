@@ -149,6 +149,11 @@
         font-weight: 700
         line-height: 2.67
         letter-spacing: .7rem
+        &._has_error
+            .label
+                span
+                    color: $red !important
+
         .label
             color: $gray
             position: absolute
@@ -160,6 +165,7 @@
                 display: inline-block
                 position: relative
                 z-index: 0
+                transition: color .5s
                 &:before
                     content: ''
                     position: absolute
@@ -200,6 +206,9 @@
         width: 100%
         padding: 0
         cursor: pointer
+        &:active
+            >span
+                color: $white
         >span
             +flex_fs_c
             border-bottom: 2px solid $red
@@ -209,6 +218,7 @@
             letter-spacing: 3.7rem
             color: $red
             padding-bottom: 20px
+            transition: color .2s
 
 
 
