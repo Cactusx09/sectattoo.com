@@ -152,9 +152,9 @@
                 top: 50%
                 transform: translateX(-50%) translateY(-50%) translateZ(0)
                 z-index: -2
-                @media (min-aspect-ratio: 16/9)
-                    width: 100%
-                    height: auto
+                // @media (min-aspect-ratio: 16/9)
+                //     width: 100%
+                //     height: auto
 
             &:before
                 content: ''
