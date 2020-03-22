@@ -354,6 +354,7 @@
             max-width: 520px
             padding-top: 3.125rem
             margin-bottom: 9rem
+            position: relative
             +mq(900px, 1120px)
                 max-width: 620px
             +mq($max: 900px)
