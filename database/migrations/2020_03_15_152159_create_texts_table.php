@@ -17,7 +17,7 @@ class CreateTextsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
-            $table->text('value');
+            $table->longText('value')->nullable();
         });
     }
 

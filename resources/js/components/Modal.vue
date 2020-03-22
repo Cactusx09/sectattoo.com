@@ -7,15 +7,7 @@
                     <div class="image__bg"></div>
                 </div>
                 <div class="info">
-                    <h3>{{ image.name }}
-                        <div
-                            class="close"
-                            @click="close()">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001">
-                                <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0014.143 5.857 19.94 19.94 0 0014.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"/>
-                            </svg>
-                        </div>
-                    </h3>
+                    <h3>{{ image.name }}</h3>
                     <p>{{ image.notes }}</p>
 
                     <a href="#"
@@ -24,10 +16,13 @@
                         @click.prevent="close({ moreDetails: true })">
                     </a>
                     <div class="info__bg"></div>
+                    <div class="close"
+                        @click="close()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001">
+                            <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0014.143 5.857 19.94 19.94 0 0014.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"/>
+                        </svg>
+                    </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
@@ -210,10 +205,10 @@
         z-index: 2
         +mq($max: 1000px)
             position: relative
-            height: calc(100vh - 9rem)
+            padding-bottom: 90%
             min-height: 300px
         +mq($max: 480px)
-            height: calc(100vh - 15rem)
+            padding-bottom: 90%
 
     &__bg
         position: absolute
@@ -255,7 +250,6 @@
         +mq($max: 1000px)
             margin-bottom: 0.5rem
             padding-right: 3rem
-            position: relative
     p
         color: rgba(#fff, 0.5)
         letter-spacing: .2rem
@@ -271,13 +265,13 @@
 .close
     position: absolute
     right: 0
-    top: -5rem
+    top: 0
     display: flex
     width: 2.1875rem
     cursor: pointer
     z-index: 9
     +mq($max: 1000px)
-        top: -0.5rem
+        top: -1.5rem
     &:hover
         svg path
             fill: $red
