@@ -93,7 +93,7 @@ class ScrollAnimations {
                 element.removeAttribute('data-aos');
             })
             this.isMobile = true;
-            // return;
+            return;
         }
 
         Scrollbar.use(OverscrollPlugin);
