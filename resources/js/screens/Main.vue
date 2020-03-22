@@ -91,6 +91,8 @@
                 })
             }
 
+            if (window.matchMedia('(max-width: 720px)').matches) return
+
             mainLogoImages()
             mainLogoGlitch()
             // const logoEl = document.querySelector('.main__logo')
@@ -211,15 +213,16 @@
                     margin-top: 0.7rem
                     margin-left: -3rem !important
                     margin-right: -1.5rem !important
-                +mq($max: 420px)
+                +mq($max: 480px)
                     transform: scale(0.5) !important
                     margin-top: 0.9rem
-                    margin-left: -3.5rem !important
+                    margin-left: -4rem !important
                     margin-right: -1.8rem !important
 
             &_bold
                 margin-bottom: 0.5rem
-
+                +mq($max: 720px)
+                    margin-bottom: 0
             &_black,
             &_white
                 +flex_c_c
@@ -230,6 +233,7 @@
                 width: 100%
                 height: 100%
                 z-index: -1
-
+                +mq($max: 720px)
+                    z-index: 2
 </style>
 
