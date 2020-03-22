@@ -174,6 +174,8 @@
     +flex_fs_s
     +mq($max: 1000px)
         overflow: auto
+    +mq($max: 720px)
+        background: #212121
 
 .container
     height: 100%
@@ -208,6 +210,10 @@
         +mq($max: 1000px)
             position: relative
             height: calc(100vh - 9rem)
+            min-height: 300px
+        +mq($max: 480px)
+            height: calc(100vh - 15rem)
+
     &__bg
         position: absolute
         width: 9999px
@@ -216,6 +222,8 @@
         right: -3rem
         top: -4rem
         z-index: -1
+        +mq($max: 720px)
+            display: none
 .info
     width: 300px
     padding-top: 4rem
@@ -225,6 +233,8 @@
     +mq($max: 1000px)
         width: 100%
         padding-top: 1rem
+    +mq($max: 720px)
+        padding-bottom: 1.5rem
     &__bg
         position: absolute
         width: 9999px
@@ -233,6 +243,8 @@
         left: -2.2rem
         top: -4rem
         z-index: -1
+        +mq($max: 720px)
+            display: none
 
     h3
         color: #ffffff

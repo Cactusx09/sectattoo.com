@@ -126,8 +126,9 @@
                 width: calc(60% - 25px)
                 max-width: 500px
             +mq($max: 900px)
-                width: 100%
-                max-width: 100%
+                width: calc(100% + 10px)
+                max-width: calc(100% + 10px)
+                margin-right: -10px
             +mq($max: 600px)
                 padding-top: 2rem
             p

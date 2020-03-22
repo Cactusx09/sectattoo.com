@@ -87,6 +87,13 @@
                             },
                         },
                     })
+
+                    if (this.scrollBar.isMobile) {
+                        this.scrollBar.scrollIntoView = (selector) => {
+                            const element = document.querySelector(selector)
+                            element.scrollIntoView({ behavior: 'smooth' })
+                        }
+                    }
                 })
             },
             closeModal({ moreDetails } = {}) {

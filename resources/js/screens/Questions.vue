@@ -168,6 +168,8 @@
             letter-spacing: .65rem
             +mq($max: 600px)
                 margin-bottom: 0.7rem
+                letter-spacing: 0.6rem
+                font-size: 1.4rem
             span
                 opacity: 0
                 +mq($max: 720px)
@@ -213,9 +215,11 @@
             text-align: justify
             +mq($max: 900px)
                 width: 100%
-                margin-top: 1rem
             +mq($max: 720px)
                 opacity: 1
+            +mq($max: 600px)
+                font-size: 1rem
+                line-height: 2.2
 
 
 </style>

@@ -419,6 +419,8 @@
             .title
                 margin-bottom: 2rem
                 font-size: 1.5rem
+                +mq($max: 500px)
+                    margin-bottom: 1rem
                 span
                     opacity: 0
                     +mq($max: 720px)
@@ -461,11 +463,16 @@
                 letter-spacing: 0.225rem
                 color: $black
                 text-decoration: none
+                +mq($max: 600px)
+                    font-size: 1rem
+                    letter-spacing: 0.2rem
             a
                 +line_through_hover($black, $weight: 1px)
             &_row
                 +flex_sb_c
                 margin-bottom: 2.5rem
+                +mq($max: 600px)
+                    margin-bottom: 1.5rem
             &_social
                 +flex_sb_c
 

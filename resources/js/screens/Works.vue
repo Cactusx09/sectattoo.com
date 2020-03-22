@@ -175,6 +175,8 @@
             +mq($max: 720px)
                 flex-wrap: wrap
                 justify-content: center
+            +mq($max: 500px)
+                margin-bottom: 0
             &_hover
                 fill: none
                 stroke: #000
@@ -214,6 +216,8 @@
             flex-wrap: wrap
             padding-bottom: 100px
             min-height: 700px
+            +mq($max: 500px)
+                padding-bottom: 3rem
 
         &__item
             width: calc(33.3333% - 70px)

@@ -168,7 +168,6 @@ class ScrollAnimations {
         const element = document.querySelector(selector)
         this.variables.scrollBar.scrollIntoView(element)
     }
-
 };
 
 export default ScrollAnimations;
