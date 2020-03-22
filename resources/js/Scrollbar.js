@@ -87,7 +87,7 @@ class ScrollAnimations {
         this.variables.elementPos = {};
         this.variables.elementTop = {};
         this.variables.realPosition = {};
-        if (this.isMobile() === true) {
+        if (window.matchMedia('(max-width: 720px)').matches) {
             this.variables.elements.forEach((element) => {
                 element.style.opacity = 1
                 element.removeAttribute('data-aos');
@@ -146,10 +146,6 @@ class ScrollAnimations {
                 }
             }
         });
-    }
-
-    isMobile() {
-        return window.matchMedia('(max-width: 720px)').matches
     }
 
     destroy() {
