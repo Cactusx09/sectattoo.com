@@ -1,7 +1,7 @@
 <template>
     <main class="main">
         <div class="main__bg">
-            <video autoplay muted loop>
+            <video autoplay muted playsinline loop>
                 <source src="@images/main.webm" type="video/webm">
                 <source src="@images/main.mp4" type="video/mp4">
             </video>

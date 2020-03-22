@@ -20,7 +20,7 @@
 
                 <div data-aos="fade-up-left"
                     class="bio__video">
-                    <video autoplay muted loop>
+                    <video autoplay muted loop playsinline>
                         <source src="@images/anisa.webm" type="video/webm">
                         <source src="@images/anisa.mp4" type="video/mp4">
                     </video>
