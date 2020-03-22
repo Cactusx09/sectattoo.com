@@ -92,8 +92,8 @@
         methods: {
             wrapWords(str, tmpl) {
                 return str.replace(/[\w-',.!:]+/g, tmpl || '<span>$&</span>');
-            }
-        }
+            },
+        },
     }
 </script>
 
@@ -112,7 +112,8 @@
             background: $black
         &__body
             +flex_sb_s
-
+            +mq($max: 900px)
+                flex-wrap: wrap
         &__text
             width: calc(60% - 70px)
             max-width: 520px
@@ -121,7 +122,14 @@
             padding-top: 50px
             position: relative
             z-index: 2
-
+            +mq(1000px, 1200px)
+                width: calc(60% - 25px)
+                max-width: 500px
+            +mq($max: 900px)
+                width: 100%
+                max-width: 100%
+            +mq($max: 600px)
+                padding-top: 2rem
             p
                 font-size: 1.125rem
                 font-weight: 700
@@ -131,6 +139,13 @@
                 flex-wrap: wrap
                 margin-bottom: 2rem
                 opacity: 0
+                +mq($max: 720px)
+                    opacity: 1
+                +mq($max: 600px)
+                    margin-bottom: 1rem
+                    line-height: 2.2
+                +mq($max: 420px)
+                    font-size: 1rem
                 span
                     margin-right: 10px
                     // opacity: 0
@@ -146,11 +161,33 @@
             background-size: cover
             overflow: hidden
             z-index: 5
+            +mq(1000px, 1200px)
+                width: calc(50% - 55px)
+            +mq(900px, 1000px)
+                width: calc(50% - 45px)
+            +mq($max: 900px)
+                margin-top: 50px
+                position: relative
+                width: calc(100% + 50px)
+                margin-left: -25px
+                margin-right: -25px
+            +mq($max: 600px)
+                margin-top: 2rem
+                height: 700px
+
             video
                 position: absolute
                 left: 0
                 top: 0
                 height: 100%
+                +mq(900px, 1000px)
+                    left: -240px
+                +mq(720px, 900px)
+                    left: -90px
+                +mq(600px, 720px)
+                    left: -180px
+                +mq($max: 600px)
+                    left: -50px
 
 </style>
 

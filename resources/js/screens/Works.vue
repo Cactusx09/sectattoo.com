@@ -59,7 +59,7 @@
                 this.$anime({
                     targets: '.works__filter a',
                     opacity: [0, 1],
-                    translateX: [0, -35],
+                    translateX: [35, 0],
                     duration: 200,
                     delay: this.$anime.stagger(150, { from: 'first' }),
                 })
@@ -68,7 +68,7 @@
                 this.$anime({
                     targets: '.works__filter a',
                     opacity: [1, 0],
-                    translateX: [-35, 0],
+                    translateX: [0, 35],
                     duration: 200,
                     delay: this.$anime.stagger(75, { from: 'last' }),
                 })
@@ -160,6 +160,8 @@
     .works
         padding-top: 240px
         background-color: $white
+        +mq(0px, 900px)
+            padding-top: 50px
         .container
             max-width: 1550px
         &__filter
@@ -168,6 +170,11 @@
             margin-left: auto
             margin-right: auto
             margin-bottom: 70px
+            +mq($max: 900px)
+                margin-bottom: 30px
+            +mq($max: 720px)
+                flex-wrap: wrap
+                justify-content: center
             &_hover
                 fill: none
                 stroke: #000
@@ -186,12 +193,21 @@
                 &:hover
                     color: $red
                 // +line_through_hover($red, $weight: 1px)
+                +mq($max: 900px)
+                    font-size: 1.2rem
+                +mq($max: 720px)
+                    opacity: 1
+                    width: 100%
+                    text-align: center
                 svg
                     position: absolute
                     top: 5px
                     left: 50%
                     margin-left: -80px
                     width: 140px
+                    +mq($max: 900px)
+                        width: 90px
+                        margin-left: -45px
 
         &__body
             +flex_sb_fs
@@ -210,6 +226,23 @@
             transition: 1s
             opacity: 0
             margin-bottom: 100px
+            +mq(900px, 1100px)
+                width: calc(33.3333% - 25px)
+            +mq($max: 900px)
+                width: calc(50% - 15px)
+                padding-bottom: 50%
+                margin-left: 0 !important
+                margin-right: 0 !important
+                margin-top: 15px !important
+                margin-bottom: 15px !important
+            +mq($max: 720px)
+                opacity: 1
+                width: calc(50% - 10px)
+                margin-top: 10px !important
+                margin-bottom: 10px !important
+            +mq($max: 600px)
+                width: 100%
+                padding-bottom: 100%
             &:nth-of-type(2)
                 margin-top: 185px
             &:nth-of-type(5)

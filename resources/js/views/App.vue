@@ -48,6 +48,7 @@
             return {
                 scrollBar: null,
                 modalId: null,
+                isMobile: false,
             }
         },
         // mounted() {
@@ -137,6 +138,9 @@
         margin-left: auto
         margin-right: auto
         box-sizing: border-box
+        +mq(500px, 900px)
+            padding-left: 25px
+            padding-right: 25px
 
     .red
         color: $red
@@ -231,6 +235,8 @@
         z-index: 5
         &__nav
             +flex_fs_c
+            +mq($max: 720px)
+                justify-content: center
             a
                 font-size: 1.125rem
                 color: $white
@@ -242,5 +248,7 @@
 
                 &:not(:last-of-type)
                     margin-right: 6rem
+                    +mq($max: 720px)
+                        margin-right: 3.5rem
 </style>
 

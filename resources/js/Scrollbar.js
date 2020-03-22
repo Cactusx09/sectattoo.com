@@ -52,7 +52,7 @@ class ScrollAnimations {
                         document.dispatchEvent(event);
                     }
                 }
-            }
+            },
         };
 
         this.init();
@@ -74,7 +74,7 @@ class ScrollAnimations {
             : this.options.scrollBarOptions;
         this.variables.scrollBarMobileSpeed = this.options.scrollBarMobileSpeed;
         this.variables.elements = this.variables.element.querySelectorAll(
-            '[data-aos]'
+            '[data-aos]',
         );
         this.variables.parentElements = [];
         for (let a = 0; a < this.variables.elements.length; a++) {
@@ -88,23 +88,12 @@ class ScrollAnimations {
         this.variables.elementTop = {};
         this.variables.realPosition = {};
         if (this.isMobile() === true) {
-            class MobilePlugin extends ScrollbarPlugin {
-                static pluginName = 'mobile';
-                static defaultOptions = {
-                    speed: this.variables.scrollBarMobileSpeed
-                };
-                transformDelta(delta, fromEvent) {
-                    if (fromEvent.type !== 'touchend') {
-                        return delta;
-                    }
-
-                    return {
-                        x: delta.x * this.options.speed,
-                        y: delta.y * this.options.speed
-                    };
-                }
-            }
-            Scrollbar.use(MobilePlugin);
+            this.variables.elements.forEach((element) => {
+                element.style.opacity = 1
+                element.removeAttribute('data-aos');
+            })
+            this.isMobile = true;
+            // return;
         }
 
         Scrollbar.use(OverscrollPlugin);
@@ -114,10 +103,10 @@ class ScrollAnimations {
         );
         this.variables.scrollBar.track.xAxis.element.remove();
 
-        let position = 0,
-            direction,
-            isVisible;
-        this.variables.scrollBar.addListener(status => {
+        let position = 0;
+        let direction;
+        let isVisible;
+        this.variables.scrollBar.addListener((status) => {
             if (status.offset.y > position) {
                 direction = 'down';
             } else {
@@ -160,30 +149,21 @@ class ScrollAnimations {
     }
 
     isMobile() {
-        if (
-            navigator.userAgent.match(/Android/i) ||
-            navigator.userAgent.match(/webOS/i) ||
-            navigator.userAgent.match(/iPhone/i) ||
-            navigator.userAgent.match(/iPad/i) ||
-            navigator.userAgent.match(/iPod/i) ||
-            navigator.userAgent.match(/BlackBerry/i) ||
-            navigator.userAgent.match(/Windows Phone/i)
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return window.matchMedia('(max-width: 720px)').matches
     }
 
     destroy() {
-        Scrollbar.destroy(this.variables.element);
+        Scrollbar.destroy(this.variables.element)
     }
+
     getScrollBar() {
-        return this.variables.scrollBar;
+        return this.variables.scrollBar
     }
+
     update() {
         Scrollbar.update(this.variables.element);
     }
+
     scrollIntoView(selector) {
         const element = document.querySelector(selector)
         this.variables.scrollBar.scrollIntoView(element)

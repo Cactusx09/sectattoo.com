@@ -172,19 +172,29 @@
     z-index: 999
     // background: $black
     +flex_fs_s
+    +mq($max: 1000px)
+        overflow: auto
 
 .container
     height: 100%
     +flex_fs_s
+    +mq($max: 1000px)
+        padding: 0
 .body
     +flex_sb_s
     position: relative
     padding: 2rem
     width: 100%
+    +mq($max: 1000px)
+        padding: 4rem 1rem 1rem 1rem
+        flex-wrap: wrap
+        background: #212121
 .image
     max-width: calc(100% - 375px)
     width: 100%
     position: relative
+    +mq($max: 1000px)
+        max-width: none
     &__img
         background-size: cover
         background-position: center
@@ -195,6 +205,9 @@
         left: 0
         height: 100%
         z-index: 2
+        +mq($max: 1000px)
+            position: relative
+            height: calc(100vh - 9rem)
     &__bg
         position: absolute
         width: 9999px
@@ -209,6 +222,9 @@
     +flex_sb_s
     flex-direction: column
     position: relative
+    +mq($max: 1000px)
+        width: 100%
+        padding-top: 1rem
     &__bg
         position: absolute
         width: 9999px
@@ -223,6 +239,8 @@
         font-size: 1.5rem
         letter-spacing: .3rem
         font-weight: 400
+        +mq($max: 1000px)
+            margin-bottom: 0.5rem
     p
         color: rgba(#fff, 0.5)
         letter-spacing: .2rem
@@ -233,6 +251,8 @@
         letter-spacing: .15rem
         font-weight: 700
         text-decoration: none
+        margin-top: 1rem
+
 .close
     position: absolute
     right: 0
@@ -240,6 +260,10 @@
     display: flex
     width: 2.1875rem
     cursor: pointer
+    z-index: 9
+    +mq($max: 1000px)
+        top: 1rem
+        right: 1rem
     &:hover
         svg path
             fill: $red

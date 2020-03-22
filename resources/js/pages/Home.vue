@@ -2,7 +2,8 @@
     <div>
         <main-screen/>
 
-        <bio v-if="bio" :bio="bio"/>
+        <bio v-if="bio"
+            :bio="bio"/>
 
         <works v-on="$listeners"/>
 

@@ -153,22 +153,38 @@
     .questions
         background: $black
         padding: 7rem 0
+        +mq($max: 900px)
+            padding: 5rem 0
+        +mq($max: 720px)
+            padding: 4rem 0
+        +mq($max: 600px)
+            padding: 3rem 0
+
         &__title
             color: #cb1515
             font-size: 1.5rem
             font-weight: 700
             margin-bottom: 2rem
             letter-spacing: .65rem
+            +mq($max: 600px)
+                margin-bottom: 0.7rem
             span
                 opacity: 0
+                +mq($max: 720px)
+                    opacity: 1
 
         &__body
             +flex_sb_fs
+            +mq($max: 900px)
+                flex-wrap: wrap
 
         &__names
             min-height: 250px
+            +mq($max: 900px)
+                min-height: 0
             p
-                opacity: 0
+                +mq($max: 720px)
+                    opacity: 1
                 +line_through_hover($white, $weight: 1px)
             span
                 display: inline-block
@@ -179,6 +195,8 @@
                 letter-spacing: 0.028rem
                 margin-bottom: 1.2rem
                 color: rgba(#ffffff, .4)
+                +mq($max: 900px)
+                    margin-bottom: 0.5rem
                 &._active
                     color: #ffffff
                     cursor: default
@@ -193,7 +211,11 @@
             letter-spacing: 0.028rem
             width: 50%
             text-align: justify
-            opacity: 0
+            +mq($max: 900px)
+                width: 100%
+                margin-top: 1rem
+            +mq($max: 720px)
+                opacity: 1
 
 
 </style>

@@ -328,7 +328,8 @@
         position: relative
         background: $black
         +flex_fs_s
-
+        +mq($max: 900px)
+            flex-wrap: wrap
 
         &__left
             width: calc(60% - 70px)
@@ -338,6 +339,14 @@
             padding-top: 50px
             +flex_sb_fs
             flex-direction: column
+            +mq($max: 1120px)
+                width: calc(60% - 35px)
+                max-width: 650px
+            +mq($max: 900px)
+                max-width: none
+                width: 100%
+            +mq($max: 600px)
+                padding-top: 0
 
         &__form
             width: 100%
@@ -345,10 +354,23 @@
             max-width: 520px
             padding-top: 3.125rem
             margin-bottom: 9rem
-            position: relative
+            +mq(900px, 1120px)
+                max-width: 620px
+            +mq($max: 900px)
+                max-width: none
+                padding-top: 2rem
+                margin-bottom: 6rem
+            +mq($max: 600px)
+                margin-bottom: 4rem
             .field
                 margin-bottom: 1rem
                 opacity: 0
+                +mq($max: 720px)
+                    opacity: 1
+                .input
+                    +mq($max: 600px)
+                        min-height: 70px
+
             p
                 font-size: 1.125rem
                 font-weight: 700
@@ -359,6 +381,10 @@
             .button
                 margin-top: 2rem
                 opacity: 0
+                +mq($max: 720px)
+                    opacity: 1
+                +mq($max: 600px)
+                    margin-top: 1rem
                 >span>span
                     position: relative
                     &:before
@@ -395,6 +421,8 @@
                 font-size: 1.5rem
                 span
                     opacity: 0
+                    +mq($max: 720px)
+                        opacity: 1
             .sending,
             .sent
                 position: absolute
@@ -410,6 +438,9 @@
             width: 100%
             padding: 3.125rem 0
             max-width: 520px
+            +mq($max: 900px)
+                max-width: none
+
             &_red
                 left: -1999px
                 bottom: 0
@@ -419,6 +450,10 @@
                 background: $red
                 z-index: -1
                 opacity: 0
+                +mq($max: 720px)
+                    opacity: 1
+                    width: calc(100% + 4rem)
+                    left: -2rem
             a,
             label
                 font-size: 1.125rem
@@ -443,11 +478,36 @@
             // background-size: cover
             margin-top: -70px
             overflow: hidden
+            +mq($max: 900px)
+                position: relative
+                left: 0
+                margin-top: 0
+                width: 100%
+            +mq($max: 840px)
+                width: calc(100% + 50px)
+                left: -25px
+            +mq($max: 720px)
+                display: none
+
             &_bg
                 position: absolute
                 height: 100%
                 bottom: 0
                 z-index:  0
+                +mq(1120px, 1280px)
+                    margin-left: -110px
+                +mq(1000px, 1120px)
+                    margin-left: -140px
+                +mq(900px, 1000px)
+                    margin-left: -170px
+                +mq(640px, 720px)
+                    margin-left: -20px
+                +mq(550px, 640px)
+                    margin-left: -60px
+                +mq(450px, 550px)
+                    margin-left: -90px
+                +mq($max: 450px)
+                    margin-left: -160px
 
             &_anisa
                 height: 100%

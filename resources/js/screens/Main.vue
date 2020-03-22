@@ -170,10 +170,53 @@
             z-index: 0
             +flex_c_c
             img
+                +mq(1000px, 1280px)
+                    transform: scale(0.75)
+                +mq(720px, 1000px)
+                    transform: scale(0.6)
+                +mq(600px, 720px)
+                    transform: scale(0.5)
+                    margin-right: -1rem
+                    margin-left: -1rem
+                +mq(480px, 600px)
+                    transform: scale(0.4)
+                    margin-right: -1.6rem
+                    margin-left: -1.6rem
+                +mq($max: 480px)
+                    transform: scale(0.35)
+                    margin-right: -3rem
+                    margin-left: -2.5rem
+
                 &:not(:last-of-type)
                     margin-right: 3.9rem
+                    +mq(1000px, 1280px)
+                        margin-right: 1.5rem
+                    +mq($max: 1000px)
+                        margin-right: 0rem
             &_tat
                 margin-top: 2.4rem
+                +mq(1000px, 1280px)
+                    margin-top: 1.7rem
+                +mq($max: 1000px)
+                    margin-top: 1.2rem
+                    width: 200px
+                    transform: scale(0.85) !important
+                +mq(600px, 720px)
+                    transform: scale(0.7) !important
+                    margin-top: 1.1rem
+                    margin-left: -1rem !important
+                    margin-right: -0.8rem !important
+                +mq(480px, 600px)
+                    transform: scale(0.55) !important
+                    margin-top: 0.7rem
+                    margin-left: -3rem !important
+                    margin-right: -1.5rem !important
+                +mq($max: 420px)
+                    transform: scale(0.5) !important
+                    margin-top: 0.9rem
+                    margin-left: -3.5rem !important
+                    margin-right: -1.8rem !important
+
             &_bold
                 margin-bottom: 0.5rem
 

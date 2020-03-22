@@ -123,3 +123,7 @@ $gray: #626262
     display: flex
     justify-content: flex-end
     align-items: flex-start
+
+=mq($min: 0px, $max)
+    @media screen and (min-width: $min) and (max-width: $max)
+        @content
