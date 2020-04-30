@@ -25,7 +25,7 @@
         "eslint-plugin-import": "^2.19.1",
         "eslint-plugin-vue": "^6.0.1",
         "jest": "^24.9.0",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.5",
         "node-sass": "^4.12.0",
